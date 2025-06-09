@@ -43,7 +43,7 @@ export default function ArtistPage() {
   }
 
   return (
-    <div className="pt-16">
+    <div className="pt-0">
       {/* Artist Hero Section */}
       <section className="relative py-20 bg-gradient-to-b from-purple-900/20 to-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
