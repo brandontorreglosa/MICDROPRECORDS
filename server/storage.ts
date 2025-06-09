@@ -65,13 +65,13 @@ export class MemStorage implements IStorage {
     // Seed artists
     const artistsData: InsertArtist[] = [
       {
-        name: "Luna Rodriguez",
+        name: "XAP",
         bio: "Rising star with ethereal vocals and introspective lyrics that resonate with Gen Z audiences.",
-        genre: "Alternative Pop",
+        genre: "Drill / Trap",
         image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-        spotifyUrl: "https://spotify.com/artist/luna",
-        instagramUrl: "https://instagram.com/lunarodriguez",
-        youtubeUrl: "https://youtube.com/lunarodriguez",
+        spotifyUrl: "https://spotify.com/artist/xap",
+        instagramUrl: "https://instagram.com/officialxap",
+        youtubeUrl: "https://youtube.com/officialxap",
         featured: true,
       },
       {
@@ -168,10 +168,10 @@ export class MemStorage implements IStorage {
         featured: true,
       },
       {
-        title: "Aurora Dreams",
-        artistId: 1, // Luna Rodriguez
-        genre: "Alternative Pop",
-        price: "23.00",
+        title: "Pablo Esco",
+        artistId: 1, // XAP
+        genre: "",
+        price: "13.00",
         image: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
         featured: true,
       },
@@ -201,8 +201,8 @@ export class MemStorage implements IStorage {
       },
       {
         title: "New Collaboration Album in Progress",
-        content: "Echo Valley and Luna Rodriguez team up for an experimental cross-genre album set to release in early 2025.",
-        excerpt: "Echo Valley and Luna Rodriguez team up for an experimental cross-genre album set to release in early 2025.",
+        content: "Echo Valley and XAP team up for an experimental cross-genre album set to release in early 2025.",
+        excerpt: "Echo Valley and XAP team up for an experimental cross-genre album set to release in early 2025.",
         image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
         category: "Studio",
         featured: true,
