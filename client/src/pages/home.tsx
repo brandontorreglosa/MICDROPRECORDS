@@ -43,8 +43,7 @@ export default function Home() {
           setTimeout(() => {
             setShowLoadingScreen(false);
             // Show cookie popup after loading if not already accepted
-            const consent = localStorage.getItem('micDropCookieConsent');
-            if (!consent) {
+            if (!UserPreferencesManager.hasCookieConsent()) {
               setTimeout(() => setShowCookiePopup(true), 500);
             }
           }, 500);
@@ -93,14 +92,12 @@ export default function Home() {
 
   // Cookie management functions
   const acceptCookies = () => {
-    localStorage.setItem('micDropCookieConsent', 'accepted');
-    localStorage.setItem('micDropCookieDate', new Date().toISOString());
+    UserPreferencesManager.setCookieConsent('accepted');
     setShowCookiePopup(false);
   };
 
   const declineCookies = () => {
-    localStorage.setItem('micDropCookieConsent', 'declined');
-    localStorage.setItem('micDropCookieDate', new Date().toISOString());
+    UserPreferencesManager.setCookieConsent('declined');
     setShowCookiePopup(false);
   };
 
