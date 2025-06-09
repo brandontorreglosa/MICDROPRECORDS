@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="gr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      href="https://cdn.glitch.global/aadb4b53-0565-4e5b-bbf9-f4a42feb2468/freepik__enhance__16119.png?v=1749481722216"
+    />
+    <title>Mic Drop Records</title>
+    <link rel="stylesheet" href="assests/css/main.css" />
+    <script src="assests/js/script.js"></script>
+    <link
+      media="all"
+      async
+      href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css"
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+  </head>
+  <body onload="onload()">
+    <div class="load"><center>Mic Drop Records</center></div>
+    <div class="content">
+      <div class="topm">
+        <img
+          class="topl"
+          src="https://cdn.glitch.global/aadb4b53-0565-4e5b-bbf9-f4a42feb2468/freepik__enhance__9481.png?v=1749482014397"
+        />
+        <form action="">
+          <button type="submit" class="srot">
+            <i class="fa-solid fa-magnifying-glass fs"></i></button
+          ><input
+            class="topseo smooth-input"
+            type="text"
+            name="search"
+            id="searchbox"
+            placeholder="Search"
+            maxlength="30"
+            minlength="3"
+          />
+        </form>
+        <userl
+          ><i class="fa-solid fa-user"></i
+        ></userl>
+      </div>
+      <div class="lowm">
+        <a><c>News</c></a
+        ><a><c>New Music</c></a
+        ><a><c>Artists</c></a
+        ><a><c>Studio</c></a
+        ><a><c>Mic Drop +</c></a>
+      </div>
+      <div class="sbody">
+        <div class="summers"><p>New Releases</p></div>
+        <div></div>
+        <div class="collab"><p>Mic Drop</p><c>X</c><a>2610 ATH</a></div>
+        <div class="cards">
+        <div class="card"><img id="card1" src="https://cdn.glitch.global/e8b8bcbf-c5a8-4555-802b-2d2633cc2966/Screenshot_58.png?v=1689850939892"><p>25.00€</p><a href="https://ig.me/m/2610_patras"><button><i class="fa-solid fa-cart-plus"></i></button></a></div>
+        <div class="rcard"><img src="https://cdn.glitch.global/e8b8bcbf-c5a8-4555-802b-2d2633cc2966/Screenshot_14.png?v=1689850939389"><p>26.00€</p><a href="https://ig.me/m/2610_patras"><button><i class="fa-solid fa-cart-plus"></i></button></a></div>
+          </div>
+      </div>
+      <div class="lower">
+        <div class="container">
+          <span><i class="fa-solid fa-heart-circle-exclamation items"></i></span
+          ><span><i class="fa-solid fa-house items"></i></span
+          ><span
+            ><button class="brt">
+              <i class="fa-solid fa-bars items"></i></button></span
+          ><span><i class="fa-solid fa-user-xmark items"></i></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
