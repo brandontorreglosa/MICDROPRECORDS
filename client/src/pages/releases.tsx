@@ -28,7 +28,7 @@ export default function Releases() {
   });
 
   return (
-    <div className="pt-16">
+    <div className="pt-0">
       {/* Header Section */}
       <section className="py-20 bg-gradient-to-b from-purple-900/20 to-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
