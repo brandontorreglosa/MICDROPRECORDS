@@ -8,6 +8,7 @@ import { PlayerProvider } from "@/hooks/use-player";
 import Header from "@/components/header";
 import MobileNav from "@/components/mobile-nav";
 import MusicPlayer from "@/components/music-player";
+import GoogleTranslate from "@/components/google-translate";
 import Home from "@/pages/home";
 import Artist from "@/pages/artist";
 import Releases from "@/pages/releases";
@@ -36,6 +37,7 @@ function App() {
           <PlayerProvider>
             <div className="min-h-screen bg-background text-foreground">
               <Header />
+              <GoogleTranslate />
               <main className="pb-32">
                 <Router />
               </main>

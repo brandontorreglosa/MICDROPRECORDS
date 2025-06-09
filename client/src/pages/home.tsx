@@ -6,6 +6,7 @@ import AlbumCard from "@/components/album-card";
 import ArtistCard from "@/components/artist-card";
 import { Play, ChevronDown, X } from "lucide-react";
 import type { ReleaseWithArtist, Artist, News } from "@shared/schema";
+import { UserPreferencesManager } from "@/utils/user-preferences";
 
 export default function Home() {
   const [showLoadingScreen, setShowLoadingScreen] = useState(true);
@@ -171,19 +172,19 @@ export default function Home() {
             backgroundImage: `url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080')`,
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-purple-900/60 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-black/40"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <div className="max-w-4xl">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 bg-clip-text text-transparent">
+              <span className="text-white">
                 Discover
               </span>
               <br />
               <span className="text-white">Underground</span>
               <br />
-              <span className="text-yellow-500">Talent</span>
+              <span className="text-gray-300">Talent</span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed max-w-2xl">
               Independent artists. Cutting-edge sound. Raw talent meets professional production at{" "}
@@ -195,11 +196,11 @@ export default function Home() {
               </span>.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md">
-              <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
+              <Button className="bg-white hover:bg-gray-200 text-black px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg w-full sm:w-auto font-medium">
                 <Play className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 Listen Now
               </Button>
-              <Button variant="outline" className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
+              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-black px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
                 Explore Artists
               </Button>
             </div>
