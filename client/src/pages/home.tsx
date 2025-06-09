@@ -111,13 +111,13 @@ export default function Home() {
     <div className="space-y-20">
       {/* Cookie Popup */}
       {showCookiePopup && (
-        <div className="fixed bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 bg-gray-900 text-white p-4 sm:p-6 rounded-lg shadow-2xl z-50 border border-gray-700">
+        <div className="fixed bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 bg-black text-white p-4 sm:p-6 rounded-lg shadow-2xl z-50 border border-gray-800">
           <div className="flex justify-between items-start mb-4">
             <h3 
-              className="text-base sm:text-lg font-bold text-purple-400"
+              className="text-base sm:text-lg font-bold text-white"
               style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}
             >
-              🍪 We Value Your Privacy
+              We Value Your Privacy
             </h3>
             <Button
               variant="ghost"
@@ -138,7 +138,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-2">
             <Button 
               onClick={acceptCookies}
-              className="bg-green-600 hover:bg-green-700 text-white text-sm flex-1 sm:flex-none"
+              className="bg-white hover:bg-gray-200 text-black text-sm flex-1 sm:flex-none"
               size="sm"
             >
               Accept All
@@ -146,7 +146,7 @@ export default function Home() {
             <Button 
               onClick={declineCookies}
               variant="outline"
-              className="border-red-500 text-red-400 hover:bg-red-500 hover:text-white text-sm flex-1 sm:flex-none"
+              className="border-gray-600 text-gray-400 hover:bg-gray-800 hover:text-white text-sm flex-1 sm:flex-none"
               size="sm"
             >
               Decline
@@ -154,7 +154,7 @@ export default function Home() {
             <Button 
               onClick={cookieSettings}
               variant="outline"
-              className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white text-sm flex-1 sm:flex-none"
+              className="border-gray-600 text-gray-400 hover:bg-gray-800 hover:text-white text-sm flex-1 sm:flex-none"
               size="sm"
             >
               Settings

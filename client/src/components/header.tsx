@@ -26,18 +26,18 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-gray-900 border-b border-gray-700">
+      <header className="sticky top-0 z-40 bg-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2 sm:space-x-3">
+            <Link href="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
               <img 
-                className="h-9 w-9 sm:h-10 sm:w-10" 
+                className="h-8 w-8 sm:h-10 sm:w-10" 
                 src={logoImage} 
                 alt="Mic Drop Records Logo"
               />
               <div 
-                className="font-bold text-base sm:text-lg text-white" 
+                className="font-bold text-sm sm:text-lg text-white whitespace-nowrap" 
                 style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}
               >
                 Mic Drop Records
@@ -49,7 +49,7 @@ export default function Header() {
               <Link 
                 href="/" 
                 className={`transition-colors duration-200 font-medium ${
-                  location === "/" ? "text-purple-500" : "text-gray-300 hover:text-purple-500"
+                  location === "/" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                 }`}
               >
                 Home
@@ -57,7 +57,7 @@ export default function Header() {
               <Link 
                 href="/releases" 
                 className={`transition-colors duration-200 font-medium ${
-                  location === "/releases" ? "text-purple-500" : "text-gray-300 hover:text-purple-500"
+                  location === "/releases" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                 }`}
               >
                 New Music
@@ -65,7 +65,7 @@ export default function Header() {
               <Link 
                 href="/artists" 
                 className={`transition-colors duration-200 font-medium ${
-                  location.startsWith("/artist") ? "text-purple-500" : "text-gray-300 hover:text-purple-500"
+                  location.startsWith("/artist") ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                 }`}
               >
                 Artists
@@ -73,7 +73,7 @@ export default function Header() {
               <Link 
                 href="/studio" 
                 className={`transition-colors duration-200 font-medium ${
-                  location === "/studio" ? "text-purple-500" : "text-gray-300 hover:text-purple-500"
+                  location === "/studio" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                 }`}
               >
                 Studio
@@ -81,12 +81,12 @@ export default function Header() {
               <Link 
                 href="/news" 
                 className={`transition-colors duration-200 font-medium ${
-                  location === "/news" ? "text-purple-500" : "text-gray-300 hover:text-purple-500"
+                  location === "/news" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                 }`}
               >
                 News
               </Link>
-              <span className="text-yellow-500 hover:text-yellow-400 transition-colors duration-200 font-medium cursor-pointer">
+              <span className="text-gray-400 hover:text-white transition-colors duration-200 font-medium cursor-pointer">
                 Mic Drop +
               </span>
             </nav>
@@ -102,7 +102,7 @@ export default function Header() {
                       placeholder="Search artists, albums..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-64 pr-10 bg-gray-800 border-gray-700 focus:border-purple-500"
+                      className="w-64 pr-10 bg-gray-900 border-gray-600 focus:border-white text-white"
                       maxLength={50}
                     />
                     <Button 
@@ -126,7 +126,7 @@ export default function Header() {
               >
                 <ShoppingCart className="h-5 w-5" />
                 {cartItemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-purple-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 bg-white text-black text-xs rounded-full h-5 w-5 flex items-center justify-center">
                     {cartItemCount}
                   </span>
                 )}
@@ -152,7 +152,7 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {showMobileMenu && (
-          <div className="md:hidden bg-gray-900 border-t border-gray-700">
+          <div className="md:hidden bg-black border-t border-gray-800">
             <div className="px-4 py-4 space-y-4">
               {/* Mobile Search */}
               <form onSubmit={handleSearch} className="flex">
@@ -162,7 +162,7 @@ export default function Header() {
                     placeholder="Search artists, albums..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pr-10 bg-gray-700 border-gray-600 focus:border-purple-500"
+                    className="pr-10 bg-gray-900 border-gray-600 focus:border-white text-white"
                   />
                   <Button 
                     type="submit" 
@@ -180,7 +180,7 @@ export default function Header() {
                 <Link 
                   href="/" 
                   className={`block py-2 transition-colors duration-200 ${
-                    location === "/" ? "text-purple-500" : "text-gray-300 hover:text-purple-500"
+                    location === "/" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
                   onClick={() => setShowMobileMenu(false)}
                 >
@@ -189,7 +189,7 @@ export default function Header() {
                 <Link 
                   href="/releases" 
                   className={`block py-2 transition-colors duration-200 ${
-                    location === "/releases" ? "text-purple-500" : "text-gray-300 hover:text-purple-500"
+                    location === "/releases" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
                   onClick={() => setShowMobileMenu(false)}
                 >
@@ -198,7 +198,7 @@ export default function Header() {
                 <Link 
                   href="/artists" 
                   className={`block py-2 transition-colors duration-200 ${
-                    location.startsWith("/artist") ? "text-purple-500" : "text-gray-300 hover:text-purple-500"
+                    location.startsWith("/artist") ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
                   onClick={() => setShowMobileMenu(false)}
                 >
@@ -207,7 +207,7 @@ export default function Header() {
                 <Link 
                   href="/studio" 
                   className={`block py-2 transition-colors duration-200 ${
-                    location === "/studio" ? "text-purple-500" : "text-gray-300 hover:text-purple-500"
+                    location === "/studio" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
                   onClick={() => setShowMobileMenu(false)}
                 >
@@ -216,13 +216,13 @@ export default function Header() {
                 <Link 
                   href="/news" 
                   className={`block py-2 transition-colors duration-200 ${
-                    location === "/news" ? "text-purple-500" : "text-gray-300 hover:text-purple-500"
+                    location === "/news" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
                   onClick={() => setShowMobileMenu(false)}
                 >
                   News
                 </Link>
-                <span className="block py-2 text-yellow-500 font-medium">Mic Drop +</span>
+                <span className="block py-2 text-gray-400 font-medium">Mic Drop +</span>
               </nav>
             </div>
           </div>
