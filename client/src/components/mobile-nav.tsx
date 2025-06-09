@@ -5,22 +5,26 @@ export default function MobileNav() {
   const [location] = useLocation();
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-gray-800/95 backdrop-blur-md border-t border-gray-700 md:hidden">
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-black border-t border-gray-800 md:hidden">
       <div className="grid grid-cols-4 gap-1 py-2">
-        <Link 
-          href="/"
+        <Link
+          href="/favorites"
           className={`flex flex-col items-center py-3 px-2 transition-colors duration-200 ${
-            location === "/" ? "text-purple-500" : "text-gray-400 hover:text-purple-500"
+            location === "/favorites"
+              ? "text-purple-500"
+              : "text-gray-400 hover:text-purple-500"
           }`}
         >
           <Heart className="h-5 w-5 mb-1" />
           <span className="text-xs">Favorites</span>
         </Link>
 
-        <Link 
+        <Link
           href="/"
           className={`flex flex-col items-center py-3 px-2 transition-colors duration-200 ${
-            location === "/" ? "text-purple-500" : "text-gray-400 hover:text-purple-500"
+            location === "/"
+              ? "text-purple-500"
+              : "text-gray-400 hover:text-purple-500"
           }`}
         >
           <Home className="h-5 w-5 mb-1" />
