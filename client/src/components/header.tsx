@@ -148,7 +148,7 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {showMobileMenu && (
-          <div className="md:hidden bg-gray-800/95 backdrop-blur-md border-t border-gray-700">
+          <div className="md:hidden bg-gray-900 border-t border-gray-700">
             <div className="px-4 py-4 space-y-4">
               {/* Mobile Search */}
               <form onSubmit={handleSearch} className="flex">

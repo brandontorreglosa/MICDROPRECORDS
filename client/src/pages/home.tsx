@@ -70,19 +70,19 @@ export default function Home() {
   if (showLoadingScreen) {
     return (
       <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-50">
-        <div className="text-center">
-          <div className="text-4xl md:text-6xl font-bold mb-8 text-black font-mono">
+        <div className="text-center px-4">
+          <div 
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-black"
+            style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}
+          >
             Mic Drop Records
           </div>
-          <div className="w-80 max-w-sm mx-auto">
-            <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+          <div className="w-64 sm:w-80 max-w-sm mx-auto">
+            <div className="w-full bg-gray-200 rounded-full h-2">
               <div 
-                className="bg-gradient-to-r from-purple-600 to-pink-600 h-2 rounded-full transition-all duration-300 ease-out" 
+                className="bg-black h-2 rounded-full transition-all duration-300 ease-out" 
                 style={{ width: `${loadingProgress}%` }}
               ></div>
-            </div>
-            <div className="text-sm text-gray-600 font-mono">
-              Loading assets... {Math.round(loadingProgress)}%
             </div>
           </div>
         </div>
@@ -111,9 +111,14 @@ export default function Home() {
     <div className="space-y-20">
       {/* Cookie Popup */}
       {showCookiePopup && (
-        <div className="fixed bottom-4 left-4 right-4 bg-gray-900 text-white p-6 rounded-lg shadow-2xl z-50 border border-gray-700">
+        <div className="fixed bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 bg-gray-900 text-white p-4 sm:p-6 rounded-lg shadow-2xl z-50 border border-gray-700">
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-lg font-bold text-purple-400">🍪 We Value Your Privacy</h3>
+            <h3 
+              className="text-base sm:text-lg font-bold text-purple-400"
+              style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}
+            >
+              🍪 We Value Your Privacy
+            </h3>
             <Button
               variant="ghost"
               size="sm"
@@ -130,10 +135,10 @@ export default function Home() {
           <p className="text-xs text-gray-400 mb-4">
             By continuing to use our website, you consent to our use of cookies in accordance with our Privacy Policy.
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <Button 
               onClick={acceptCookies}
-              className="bg-green-600 hover:bg-green-700 text-white text-sm"
+              className="bg-green-600 hover:bg-green-700 text-white text-sm flex-1 sm:flex-none"
               size="sm"
             >
               Accept All
@@ -141,7 +146,7 @@ export default function Home() {
             <Button 
               onClick={declineCookies}
               variant="outline"
-              className="border-red-500 text-red-400 hover:bg-red-500 hover:text-white text-sm"
+              className="border-red-500 text-red-400 hover:bg-red-500 hover:text-white text-sm flex-1 sm:flex-none"
               size="sm"
             >
               Decline
@@ -149,7 +154,7 @@ export default function Home() {
             <Button 
               onClick={cookieSettings}
               variant="outline"
-              className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white text-sm"
+              className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white text-sm flex-1 sm:flex-none"
               size="sm"
             >
               Settings
@@ -159,7 +164,7 @@ export default function Home() {
       )}
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center">
+      <section className="relative min-h-screen flex items-center px-4 sm:px-6 lg:px-8">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center"
           style={{
@@ -169,9 +174,9 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-purple-900/60 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 bg-clip-text text-transparent">
                 Discover
               </span>
@@ -180,15 +185,21 @@ export default function Home() {
               <br />
               <span className="text-yellow-500">Talent</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Independent artists. Cutting-edge sound. Raw talent meets professional production at Mic Drop Records.
+            <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed max-w-2xl">
+              Independent artists. Cutting-edge sound. Raw talent meets professional production at{" "}
+              <span 
+                className="text-white font-bold"
+                style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}
+              >
+                Mic Drop Records
+              </span>.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-6 text-lg">
-                <Play className="mr-2 h-5 w-5" />
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md">
+              <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
+                <Play className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 Listen Now
               </Button>
-              <Button variant="outline" className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black px-8 py-6 text-lg">
+              <Button variant="outline" className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
                 Explore Artists
               </Button>
             </div>
@@ -196,20 +207,20 @@ export default function Home() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="h-8 w-8 text-gray-400" />
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <ChevronDown className="h-6 w-6 sm:h-8 sm:w-8 text-gray-400" />
         </div>
       </section>
 
       {/* New Releases Section */}
-      <section className="py-20 bg-gradient-to-b from-transparent to-gray-900/30">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-transparent to-gray-900/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">New Releases</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto"></div>
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">New Releases</h2>
+            <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto"></div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {featuredReleases.map((release) => (
               <AlbumCard key={release.id} release={release} />
             ))}
@@ -218,14 +229,14 @@ export default function Home() {
       </section>
 
       {/* Featured Artists Section */}
-      <section className="py-20">
+      <section className="py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Featured Artists</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-yellow-500 mx-auto"></div>
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Featured Artists</h2>
+            <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-cyan-500 to-yellow-500 mx-auto"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {featuredArtists.map((artist) => (
               <ArtistCard key={artist.id} artist={artist} />
             ))}
