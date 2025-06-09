@@ -1,4 +1,5 @@
 import { pgTable, text, serial, integer, boolean, timestamp, numeric } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -92,6 +93,26 @@ export type InsertNews = z.infer<typeof insertNewsSchema>;
 
 export type Cart = typeof cart.$inferSelect;
 export type InsertCart = z.infer<typeof insertCartSchema>;
+
+// Database relations
+export const artistsRelations = relations(artists, ({ many }) => ({
+  releases: many(releases),
+}));
+
+export const releasesRelations = relations(releases, ({ one, many }) => ({
+  artist: one(artists, {
+    fields: [releases.artistId],
+    references: [artists.id],
+  }),
+  cartItems: many(cart),
+}));
+
+export const cartRelations = relations(cart, ({ one }) => ({
+  release: one(releases, {
+    fields: [cart.releaseId],
+    references: [releases.id],
+  }),
+}));
 
 export type ReleaseWithArtist = Release & {
   artist: Artist | null;
