@@ -1,0 +1,191 @@
+function onload() {
+  initializePlaceholder();
+  load();
+}
+
+function load() {
+  let x = document.querySelectorAll(".load");
+
+  let s = document.querySelectorAll(".content");
+
+  setTimeout(function () {
+    for (let i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+
+    for (let i = 0; i < s.length; i++) {
+      s[i].style.display = "block";
+      s[i].style.opacity = "1";
+    }
+  }, 3500);
+}
+
+// ... (rest of your code)
+
+// User-agent detection for PC users
+
+function isPC() {
+  const userAgent = navigator.userAgent;
+
+  const mobileKeywords = [
+    "Android",
+    "webOS",
+    "iPhone",
+    "iPad",
+    "iPod",
+    "BlackBerry",
+    "Windows Phone",
+  ];
+
+  for (const keyword of mobileKeywords) {
+    if (userAgent.indexOf(keyword) !== -1) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+if (isPC()) {
+  // Redirect PC users to a different page or show an error message
+
+  // You can customize this based on your requirements
+
+  // For example, show an error message:
+
+  const errorMessage = document.createElement("p");
+
+  errorMessage.textContent =
+    "Sorry, this website is not accessible from PC. Please visit from a mobile device.";
+
+  document.body.appendChild(errorMessage);
+} else {
+  // If not a PC user, execute onload function
+
+  window.onload = onload;
+}
+
+let animationInterval, inputTimeout;
+
+function changePlaceholderWithInterval(inputId, interval, placeholderArray) {
+  const inputElement = document.getElementById("searchbox");
+
+  let currentIndex = 0;
+
+  function changePlaceholder() {
+    inputElement.classList.add("placeholder-fade");
+
+    setTimeout(() => {
+      inputElement.placeholder = placeholderArray[currentIndex];
+
+      currentIndex = (currentIndex + 1) % placeholderArray.length;
+
+      inputElement.classList.remove("placeholder-fade");
+    }, 300);
+  }
+
+  function handleInputTimeout() {
+    animationInterval = setInterval(changePlaceholder, interval);
+  }
+
+  inputElement.addEventListener("focus", function () {
+    stopAnimation();
+
+    inputElement.placeholder = placeholderArray[currentIndex];
+  });
+
+  inputElement.addEventListener("input", function () {
+    clearTimeout(inputTimeout);
+
+    stopAnimation();
+
+    inputTimeout = setTimeout(handleInputTimeout, interval);
+  });
+
+  handleInputTimeout();
+}
+
+function initializePlaceholder() {
+  const placeholders = [
+    "Mic Drop Records",
+    
+    "Search For Whibla",
+
+    "Search For Danny Stanev",
+
+    "Search For Pitsaras",
+    
+    "Search For Vaggelis",
+    
+    "W by (whibla)",
+    
+    "Freestyle by (Danny Stanev)",
+    
+    "Tickets To Whibla",
+    
+    "Tickets To Danny Stanev",
+    
+    "Tickets To Pitsaras",
+    
+    "Tickets To Vaggelis"
+
+    // Add the rest of the placeholder values here...
+  ];
+
+  changePlaceholderWithInterval("searchBox", 3500, placeholders);
+}
+
+function stopAnimation() {
+  clearInterval(animationInterval);
+
+  clearTimeout(inputTimeout);
+}
+
+function initializeSlider() {
+  const slider = document.querySelector(".slider");
+
+  const dots = document.querySelector(".dots");
+
+  const dotElements = [];
+
+  let currentSlide = 0;
+
+  for (let i = 0; i < slider.querySelectorAll("img").length; i++) {
+    const dot = document.createElement("span");
+
+    dot.classList.add("dot");
+
+    dot.addEventListener("click", () => {
+      currentSlide = i;
+
+      updateSlider();
+    });
+
+    dotElements.push(dot);
+
+    dots.appendChild(dot);
+  }
+
+  function updateSlider() {
+    if (
+      !(
+        currentSlide < 0 ||
+        currentSlide >= slider.querySelectorAll("img").length
+      )
+    ) {
+      slider.style.transform = `translateX(-${100 * currentSlide}%)`;
+
+      for (let i = 0; i < dotElements.length; i++) {
+        dotElements[i].classList.toggle("active", i === currentSlide);
+      }
+    }
+  }
+
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slider.querySelectorAll("img").length;
+
+    updateSlider();
+  }, 3500);
+
+  updateSlider();
+}
