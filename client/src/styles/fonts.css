@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital@1&family=Tektur&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap');
+
+/* Font families for consistent use across the app */
+.font-special-gothic {
+  font-family: "Special Gothic Expanded One", sans-serif;
+}
+
+.font-lobster {
+  font-family: "Lobster", cursive;
+}
+
+.font-tektur {
+  font-family: "Tektur", cursive;
+}
+
+.font-roboto {
+  font-family: "Roboto", sans-serif;
+}
+
+/* Loading screen specific styles */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loading-title {
+  font-family: "Special Gothic Expanded One", sans-serif;
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+}
+
+.loading-progress-container {
+  width: 100%;
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+.loading-progress-bar {
+  width: 100%;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  height: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.loading-progress-fill {
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s ease-out;
+}
+
+.loading-text {
+  font-family: "Roboto", monospace;
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* Header branding styles */
+.brand-title {
+  font-family: "Special Gothic Expanded One", sans-serif;
+  font-weight: bold;
+  background: linear-gradient(135deg, #9333ea, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.025em;
+}
+
+/* Mobile and tablet responsive adjustments */
+@media (max-width: 768px) {
+  .loading-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .loading-progress-container {
+    max-width: 16rem;
+    padding: 0 1rem;
+  }
+  
+  .brand-title {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .loading-progress-container {
+    max-width: 14rem;
+  }
+  
+  .brand-title {
+    font-size: 1rem;
+  }
+}
+
+/* Cookie popup styles */
+.cookie-popup {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  background-color: #111827;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  z-index: 9998;
+  border: 1px solid #374151;
+}
+
+.cookie-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.cookie-title {
+  font-family: "Special Gothic Expanded One", sans-serif;
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #a855f7;
+}
+
+.cookie-content {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.875rem;
+  color: #d1d5db;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.cookie-disclaimer {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+.cookie-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .cookie-popup {
+    bottom: 0.5rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .cookie-buttons {
+    flex-direction: column;
+  }
+  
+  .cookie-buttons > * {
+    width: 100%;
+    justify-content: center;
+  }
+}

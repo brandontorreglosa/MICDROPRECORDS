@@ -25,17 +25,17 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border">
+      <header className="sticky top-0 z-40 bg-gray-900 border-b border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-3">
               <img 
-                className="h-10 w-10 rounded-lg" 
+                className="h-8 w-8 sm:h-10 sm:w-10 rounded-lg" 
                 src="https://cdn.glitch.global/aadb4b53-0565-4e5b-bbf9-f4a42feb2468/freepik__enhance__9481.png?v=1749482014397" 
                 alt="Mic Drop Records Logo"
               />
-              <div className="font-bold text-xl gradient-text">
+              <div className="font-bold text-lg sm:text-xl text-white" style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}>
                 Mic Drop Records
               </div>
             </Link>
