@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode, createElement } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -173,11 +173,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     isLoading: isLoading || addToCartMutation.isPending || removeFromCartMutation.isPending,
   };
 
-  return (
-    <CartContext.Provider value={contextValue}>
-      {children}
-    </CartContext.Provider>
-  );
+  return createElement(CartContext.Provider, { value: contextValue }, children);
 }
 
 export function useCart() {

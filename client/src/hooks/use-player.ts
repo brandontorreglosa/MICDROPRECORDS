@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useRef, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useRef, useEffect, ReactNode, createElement } from "react";
 
 interface Track {
   id: number;
@@ -214,11 +214,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     closePlayer,
   };
 
-  return (
-    <PlayerContext.Provider value={contextValue}>
-      {children}
-    </PlayerContext.Provider>
-  );
+  return createElement(PlayerContext.Provider, { value: contextValue }, children);
 }
 
 export function usePlayer() {

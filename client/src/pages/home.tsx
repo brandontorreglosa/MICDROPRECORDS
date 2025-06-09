@@ -25,29 +25,139 @@ export default function Home() {
     queryKey: ["/api/news/featured"],
   });
 
+  // Enhanced loading with asset tracking
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowLoadingScreen(false);
-    }, 2000);
+    const trackAssets = () => {
+      const images = document.querySelectorAll('img');
+      const totalAssets = images.length + 1; // +1 for fonts
+      let loadedAssets = 0;
 
+      const updateProgress = () => {
+        loadedAssets++;
+        const progress = (loadedAssets / totalAssets) * 100;
+        setLoadingProgress(progress);
+        setAssetsLoaded(loadedAssets);
+
+        if (progress >= 100) {
+          setTimeout(() => {
+            setShowLoadingScreen(false);
+            // Show cookie popup after loading if not already accepted
+            const consent = localStorage.getItem('micDropCookieConsent');
+            if (!consent) {
+              setTimeout(() => setShowCookiePopup(true), 500);
+            }
+          }, 500);
+        }
+      };
+
+      images.forEach(img => {
+        if (img.complete) {
+          updateProgress();
+        } else {
+          img.addEventListener('load', updateProgress);
+          img.addEventListener('error', updateProgress);
+        }
+      });
+
+      // Check fonts
+      document.fonts.ready.then(updateProgress);
+    };
+
+    const timer = setTimeout(trackAssets, 100);
     return () => clearTimeout(timer);
   }, []);
 
   if (showLoadingScreen) {
     return (
-      <div className="fixed inset-0 bg-gradient-to-br from-purple-900 via-purple-800 to-pink-800 flex items-center justify-center z-50">
+      <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-50">
         <div className="text-center">
-          <div className="text-4xl font-bold mb-4 animate-pulse text-white">
+          <div className="text-4xl md:text-6xl font-bold mb-8 text-black font-mono">
             Mic Drop Records
           </div>
-          <div className="w-16 h-1 bg-yellow-500 mx-auto animate-pulse"></div>
+          <div className="w-80 max-w-sm mx-auto">
+            <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+              <div 
+                className="bg-gradient-to-r from-purple-600 to-pink-600 h-2 rounded-full transition-all duration-300 ease-out" 
+                style={{ width: `${loadingProgress}%` }}
+              ></div>
+            </div>
+            <div className="text-sm text-gray-600 font-mono">
+              Loading assets... {Math.round(loadingProgress)}%
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 
+  // Cookie management functions
+  const acceptCookies = () => {
+    localStorage.setItem('micDropCookieConsent', 'accepted');
+    localStorage.setItem('micDropCookieDate', new Date().toISOString());
+    setShowCookiePopup(false);
+  };
+
+  const declineCookies = () => {
+    localStorage.setItem('micDropCookieConsent', 'declined');
+    localStorage.setItem('micDropCookieDate', new Date().toISOString());
+    setShowCookiePopup(false);
+  };
+
+  const cookieSettings = () => {
+    alert('Cookie Settings:\n\nEssential Cookies: Always enabled\nAnalytics Cookies: Help us improve our service\nMarketing Cookies: Personalized content\n\nContact: privacy@micdroprecords.com');
+  };
+
   return (
     <div className="space-y-20">
+      {/* Cookie Popup */}
+      {showCookiePopup && (
+        <div className="fixed bottom-4 left-4 right-4 bg-gray-900 text-white p-6 rounded-lg shadow-2xl z-50 border border-gray-700">
+          <div className="flex justify-between items-start mb-4">
+            <h3 className="text-lg font-bold text-purple-400">🍪 We Value Your Privacy</h3>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowCookiePopup(false)}
+              className="text-gray-400 hover:text-white"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+          <p className="text-sm text-gray-300 mb-4 leading-relaxed">
+            Mic Drop Records uses cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. 
+            We also share information about your use of our site with our analytics partners who may combine it with other information you've provided to them.
+          </p>
+          <p className="text-xs text-gray-400 mb-4">
+            By continuing to use our website, you consent to our use of cookies in accordance with our Privacy Policy.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Button 
+              onClick={acceptCookies}
+              className="bg-green-600 hover:bg-green-700 text-white text-sm"
+              size="sm"
+            >
+              Accept All
+            </Button>
+            <Button 
+              onClick={declineCookies}
+              variant="outline"
+              className="border-red-500 text-red-400 hover:bg-red-500 hover:text-white text-sm"
+              size="sm"
+            >
+              Decline
+            </Button>
+            <Button 
+              onClick={cookieSettings}
+              variant="outline"
+              className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white text-sm"
+              size="sm"
+            >
+              Settings
+            </Button>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center">
         <div 
