@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Search, Menu, User, ShoppingCart } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
 import ShoppingCartComponent from "./shopping-cart";
+import logoImage from "@assets/freepik__enhance__16119_1749484784408.png";
 
 export default function Header() {
   const [location] = useLocation();
@@ -29,13 +30,16 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3">
+            <Link href="/" className="flex items-center space-x-2 sm:space-x-3">
               <img 
-                className="h-8 w-8 sm:h-10 sm:w-10 rounded-lg" 
-                src="https://cdn.glitch.global/aadb4b53-0565-4e5b-bbf9-f4a42feb2468/freepik__enhance__9481.png?v=1749482014397" 
+                className="h-9 w-9 sm:h-10 sm:w-10" 
+                src={logoImage} 
                 alt="Mic Drop Records Logo"
               />
-              <div className="font-bold text-lg sm:text-xl text-white" style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}>
+              <div 
+                className="font-bold text-base sm:text-lg text-white" 
+                style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}
+              >
                 Mic Drop Records
               </div>
             </Link>
