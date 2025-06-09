@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
 
-// Maps country code to Google Translate language code
 const countryToLang: Record<string, string> = {
   ES: "es", FR: "fr", DE: "de", IT: "it", PT: "pt", RU: "ru", CN: "zh-CN", JP: "ja", KR: "ko",
   AR: "ar", NL: "nl", SV: "sv", NO: "no", DA: "da", FI: "fi", PL: "pl", BR: "pt", MX: "es"
 };
 
-// Maps Google Translate language code to "Translate" in that language
 const translateWord: Record<string, string> = {
   en: "Translate", es: "Traducir", fr: "Traduire", de: "Übersetzen", it: "Traduci", pt: "Traduzir",
   ru: "Перевести", "zh-CN": "翻译", ja: "翻訳", ko: "번역", ar: "ترجمة", nl: "Vertalen", sv: "Översätt",
@@ -19,7 +17,6 @@ declare global {
   interface Window {
     google: any;
     googleTranslateElementInit: () => void;
-    gtAutoLang: string | null;
   }
 }
 
@@ -27,47 +24,35 @@ export default function GoogleTranslate() {
   const [isTranslateLoaded, setIsTranslateLoaded] = useState(false);
   const [showTranslateWidget, setShowTranslateWidget] = useState(false);
   const [userLang, setUserLang] = useState<string>("en");
+  const [autoTranslated, setAutoTranslated] = useState(false);
+  const widgetRef = useRef<HTMLDivElement>(null);
 
-  // On mount, fetch IP country and decide language
   useEffect(() => {
     fetch("https://ipapi.co/json/")
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         const countryLang = countryToLang[data.country_code];
-        if (countryLang && countryLang !== "en") {
-          setUserLang(countryLang);
-          window.gtAutoLang = countryLang;
-          initializeGoogleTranslate(countryLang);
-        } else {
-          setUserLang("en");
-          window.gtAutoLang = null;
-        }
+        if (countryLang && countryLang !== "en") setUserLang(countryLang);
       })
-      .catch(() => {
-        setUserLang("en");
-        window.gtAutoLang = null;
-      });
-    // eslint-disable-next-line
+      .catch(() => setUserLang("en"));
   }, []);
 
-  // When widget is loaded, auto-select the language if needed
-  useEffect(() => {
-    if (isTranslateLoaded && window.gtAutoLang && window.google && window.google.translate) {
-      // Give the widget a moment to inject its combo box
-      setTimeout(() => {
-        const select = document.querySelector(".goog-te-combo") as HTMLSelectElement | null;
-        if (select && select.value !== window.gtAutoLang) {
-          select.value = window.gtAutoLang;
-          // Fire the change event so Google Translate applies the language
-          select.dispatchEvent(new Event("change"));
-        }
-      }, 700); // May need to adjust delay for slow connections
-    }
-  }, [isTranslateLoaded]);
-
-  // Loads the widget if not already loaded
-  function initializeGoogleTranslate(langOverride?: string) {
+  const loadTranslateScript = () => {
     if (window.google && window.google.translate) {
+      setIsTranslateLoaded(true);
+      return;
+    }
+    if (document.getElementById("google-translate-script")) return;
+    const script = document.createElement("script");
+    script.id = "google-translate-script";
+    script.type = "text/javascript";
+    script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    document.head.appendChild(script);
+  };
+
+  useEffect(() => {
+    window.googleTranslateElementInit = () => {
+      if (!widgetRef.current) return;
       new window.google.translate.TranslateElement(
         {
           pageLanguage: "en",
@@ -75,49 +60,51 @@ export default function GoogleTranslate() {
           layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
           autoDisplay: false,
         },
-        "google_translate_element"
+        widgetRef.current.id
       );
       setIsTranslateLoaded(true);
-      setShowTranslateWidget(true);
-    } else {
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    };
+  }, []);
 
-      window.googleTranslateElementInit = () => {
-        new window.google.translate.TranslateElement(
-          {
-            pageLanguage: "en",
-            includedLanguages: "es,fr,de,it,pt,ru,zh-CN,ja,ko,ar,nl,sv,no,da,fi,pl",
-            layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false,
-          },
-          "google_translate_element"
-        );
-        setIsTranslateLoaded(true);
-        setShowTranslateWidget(true);
-      };
-
-      document.head.appendChild(script);
+  useEffect(() => {
+    if (userLang !== "en" && !autoTranslated) {
+      loadTranslateScript();
     }
-  }
+  }, [userLang, autoTranslated]);
 
-  // Button click: just toggle widget visibility
+  useEffect(() => {
+    if (
+      isTranslateLoaded &&
+      userLang !== "en" &&
+      !autoTranslated &&
+      window.google &&
+      window.google.translate
+    ) {
+      setTimeout(() => {
+        const select = document.querySelector(".goog-te-combo") as HTMLSelectElement | null;
+        if (select && select.value !== userLang) {
+          select.value = userLang;
+          select.dispatchEvent(new Event("change"));
+          setAutoTranslated(true);
+        }
+      }, 800);
+    }
+  }, [isTranslateLoaded, userLang, autoTranslated]);
+
   const handleTranslateClick = () => {
     if (!isTranslateLoaded) {
-      initializeGoogleTranslate();
+      loadTranslateScript();
+      setShowTranslateWidget(true);
     } else {
-      setShowTranslateWidget((prev) => !prev);
+      setShowTranslateWidget(prev => !prev);
     }
   };
 
-  // Figure out label for the button
   const buttonLabel =
     userLang !== "en" && translateWord[userLang]
       ? translateWord[userLang]
       : translateWord["en"];
 
-  // Reserve space for widget to prevent shifting
   return (
     <div className="fixed top-20 right-4 z-40 w-64">
       <Button
@@ -131,6 +118,7 @@ export default function GoogleTranslate() {
         {buttonLabel}
       </Button>
       <div
+        ref={widgetRef}
         id="google_translate_element"
         className="mt-2 bg-black rounded-lg border border-gray-600 p-2"
         style={{
@@ -139,16 +127,15 @@ export default function GoogleTranslate() {
           position: "relative"
         }}
       ></div>
-      {!showTranslateWidget && (
-        <div style={{ minHeight: 48, visibility: "hidden" }}></div>
-      )}
+      {!showTranslateWidget && <div style={{ minHeight: 48, visibility: "hidden" }}></div>}
       <style
         dangerouslySetInnerHTML={{
           __html: `
-          /* Hide Google Translate's top banner */
           .goog-te-banner-frame { display: none !important; }
-          /* Keep font, font-size, and colors from Google Translate */
-          body, body * {
+          .goog-te-spinner-pos { display: none !important; }
+          body { top: 0 !important; }
+          /* Prevent Google Translate from changing your site's fonts, font sizes, or layout */
+          html, body, body * {
             font-family: inherit !important;
             font-size: inherit !important;
             color: inherit !important;
@@ -165,10 +152,8 @@ export default function GoogleTranslate() {
           .goog-te-gadget {
             color: white !important;
           }
-          /* Prevent layout shift caused by injected spans */
-          .goog-te-spinner-pos { display: none !important; }
-          body { top: 0 !important; }
-          `}}
+          `
+        }}
       />
     </div>
   );
