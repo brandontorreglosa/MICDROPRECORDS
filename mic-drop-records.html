@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://cdn.glitch.global/aadb4b53-0565-4e5b-bbf9-f4a42feb2468/freepik__enhance__16119.png?v=1749481722216" />
+    <title>Mic Drop Records</title>
+    <link media="all" async href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital@1&family=Tektur&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap');
+
+        /* Hide on desktop - mobile first */
+        @media screen and (min-width: 768px) {
+            .desktop-warning {
+                display: flex !important;
+                position: fixed;
+                inset: 0;
+                background: #000;
+                color: white;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                z-index: 9999;
+                font-family: "Roboto", sans-serif;
+                font-size: 18px;
+            }
+            
+            .mobile-content {
+                display: none !important;
+            }
+        }
+
+        .desktop-warning {
+            display: none;
+        }
+
+        body {
+            background-color: #ffffff;
+            user-select: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-text {
+            font-size: 40px;
+            font-family: "Special Gothic Expanded One", sans-serif;
+            color: #000000;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            width: 300px;
+            height: 4px;
+            background-color: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8B5CF6, #EC4899, #06B6D4);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* Cookie Popup */
+        .cookie-popup {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #0c0c0c;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 9998;
+            display: none;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .cookie-popup.show {
+            display: block;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .cookie-header {
+            font-family: "Special Gothic Expanded One", sans-serif;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .cookie-text {
+            font-family: "Roboto", sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            color: #cccccc;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .cookie-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            font-family: "Roboto", sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cookie-btn.accept {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .cookie-btn.decline {
+            background: #f44336;
+            color: white;
+        }
+
+        .cookie-btn.settings {
+            background: #2196F3;
+            color: white;
+        }
+
+        .cookie-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        .content {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .content.visible {
+            opacity: 1;
+        }
+
+        .topm {
+            position: fixed;
+            height: 55px;
+            width: 100%;
+            top: 0%;
+            left: 0%;
+            background-color: #0c0c0c;
+            border-top: 6px solid white;
+            z-index: 2;
+        }
+
+        .lowm {
+            position: fixed;
+            height: 30px;
+            background-color: #0c0c0c;
+            top: 60px;
+            width: 100%;
+            left: 0%;
+            z-index: 2;
+            border-top: 1px solid lightgrey;
+        }
+
+        .lowm a {
+            float: left;
+            width: 20%;
+            height: 100%;
+            text-align: center;
+            font-size: 10px;
+            font-weight: bold;
+            font-family: "Roboto", sans-serif;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .lowm a:hover {
+            background-color: red;
+        }
+
+        .lowm c {
+            top: 8.5px;
+            position: relative;
+            color: white;
+        }
+
+        .sbody {
+            position: fixed;
+            top: 12.3%;
+            width: 100%;
+            height: 81%;
+            left: 0%;
+            overflow: auto;
+        }
+
+        img.topl {
+            position: absolute;
+            top: 9px;
+            left: 8px;
+            height: 35px;
+            width: 35px;
+        }
+
+        input.topseo {
+            width: 66.5%;
+            height: 25px;
+            font-size: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            position: absolute;
+            left: 53.5px;
+            top: 13.2px;
+            border-radius: 5%;
+            background-color: #0c0c0c;
+            color: white;
+            padding-left: 30px;
+            border: white solid 1.25px;
+            outline: none;
+        }
+
+        button.srot {
+            position: absolute;
+            left: 54.3px;
+            top: 15.5px;
+            background: #333333;
+            border: none;
+            z-index: 1;
+            height: 25px;
+            width: 25px;
+            cursor: pointer;
+        }
+
+        i.fs {
+            font-size: 15px;
+            color: white;
+            text-align: center;
+            top: 5.6px;
+            position: absolute;
+            right: 4px;
+        }
+
+        userl i {
+            color: white;
+            position: absolute;
+            right: 14px;
+            font-size: 14px;
+            top: 21px;
+        }
+
+        .smooth-input::placeholder {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 1;
+        }
+
+        .smooth-input.placeholder-fade::placeholder {
+            opacity: 0;
+        }
+
+        .lower {
+            position: fixed;
+            bottom: 0%;
+            height: 45px;
+            width: 100%;
+            left: 0%;
+            background-color: #0c0c0c;
+            border-bottom: 4px solid white;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10%;
+            padding-right: 8.5%;
+            justify-content: center;
+            align-items: center;
+            padding-top: 5px;
+        }
+
+        i.items {
+            color: white;
+            font-size: 20px;
+        }
+
+        button.brt {
+            background-color: #333333;
+            height: 35px;
+            width: 35px;
+            border-radius: 50%;
+            padding-bottom: 0px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button.brt:hover {
+            background-color: lightgrey;
+        }
+
+        .slider-container {
+            position: absolute;
+            width: 100%;
+            max-height: 370px;
+            margin: 0 auto;
+            overflow: hidden;
+            top: 16.5%;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slider img {
+            min-width: 100%;
+            height: 370px;
+            object-fit: cover;
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            bottom: 2.5%;
+            left: 37%;
+            z-index: 1;
+            position: absolute;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #bbbbbb;
+            margin: 5px;
+            cursor: pointer;
+            z-index: 1;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: #ffffff;
+        }
+
+        div.summers {
+            width: 100%;
+            height: 100px;
+            background-color: #ff0000;
+            position: relative;
+            top: -5%;
+        }
+
+        div.summers p {
+            font-size: 30px;
+            text-align: center;
+            color: white;
+            font-family: "Tektur", cursive;
+            padding-top: 30px;
+            margin: 0;
+        }
+
+        div.collab {
+            width: 100%;
+            height: 100px;
+            background-color: #0c0c0c;
+            position: absolute;
+            top: 78.6%;
+        }
+
+        div.collab p {
+            color: white;
+            font-size: 22.5px;
+            font-family: "Special Gothic Expanded One", sans-serif;
+            position: absolute;
+            left: 12%;
+            top: 10px;
+            margin: 0;
+        }
+
+        div.collab c {
+            color: lightgrey;
+            font-size: 30px;
+            font-family: "Roboto", sans-serif;
+            position: absolute;
+            left: 50%;
+            top: 31.50px;
+        }
+
+        div.collab a {
+            color: white;
+            font-size: 25px;
+            font-family: "Lobster", cursive;
+            position: absolute;
+            right: 12.5%;
+            top: 31.5px;
+            text-decoration: none;
+        }
+
+        div.cards {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 95.5%;
+            flex-wrap: flex;
+            display: flex;
+            gap: 3%;
+            background-color: #333333;
+        }
+
+        div.card, div.rcard {
+            background-color: white;
+            width: 45%;
+            height: 240px;
+            border-radius: 5%;
+            margin-top: 7px;
+            margin-bottom: 7px;
+            position: relative;
+        }
+
+        div.card {
+            margin-left: 3.3%;
+        }
+
+        div.card img, div.rcard img {
+            width: 100%;
+            height: 200px;
+            border-top-left-radius: 5%;
+            border-top-right-radius: 5%;
+            object-fit: cover;
+        }
+
+        div.card p, div.rcard p {
+            margin-left: 9px;
+            font-size: 17px;
+            color: black;
+            font-family: "Roboto", sans-serif;
+            font-weight: bold;
+            position: absolute;
+            bottom: -2px;
+        }
+
+        div.card button, div.rcard button {
+            position: absolute;
+            width: 25%;
+            height: 19px;
+            font-size: 13px;
+            right: 6%;
+            bottom: 2px;
+            cursor: pointer;
+        }
+
+        *:focus {
+            outline: none;
+        }
+
+        /* Responsive adjustments for tablets */
+        @media screen and (min-width: 481px) and (max-width: 767px) {
+            .loading-text {
+                font-size: 50px;
+            }
+            
+            .progress-bar {
+                width: 400px;
+            }
+            
+            div.summers p {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Desktop Warning -->
+    <div class="desktop-warning">
+        <div>
+            <h2>Mobile Only Experience</h2>
+            <p>Sorry, Mic Drop Records website is optimized for mobile devices only.<br>Please visit us from your smartphone or tablet for the best experience.</p>
+        </div>
+    </div>
+
+    <!-- Mobile Content -->
+    <div class="mobile-content">
+        <!-- Loading Screen -->
+        <div class="loading-screen" id="loadingScreen">
+            <div class="loading-text">Mic Drop Records</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <!-- Cookie Popup -->
+        <div class="cookie-popup" id="cookiePopup">
+            <div class="cookie-header">🍪 We Value Your Privacy</div>
+            <div class="cookie-text">
+                Mic Drop Records uses cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. We also share information about your use of our site with our analytics partners who may combine it with other information you've provided to them.
+                <br><br>
+                By continuing to use our website, you consent to our use of cookies in accordance with our Privacy Policy.
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn accept" onclick="acceptCookies()">Accept All</button>
+                <button class="cookie-btn decline" onclick="declineCookies()">Decline</button>
+                <button class="cookie-btn settings" onclick="cookieSettings()">Settings</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content" id="mainContent">
+            <div class="topm">
+                <img class="topl" src="https://cdn.glitch.global/aadb4b53-0565-4e5b-bbf9-f4a42feb2468/freepik__enhance__9481.png?v=1749482014397" />
+                <form action="">
+                    <button type="submit" class="srot">
+                        <i class="fa-solid fa-magnifying-glass fs"></i>
+                    </button>
+                    <input class="topseo smooth-input" type="text" name="search" id="searchbox" placeholder="Search" maxlength="30" minlength="3" />
+                </form>
+                <userl><i class="fa-solid fa-user"></i></userl>
+            </div>
+
+            <div class="lowm">
+                <a onclick="navigateTo('news')"><c>News</c></a>
+                <a onclick="navigateTo('music')"><c>New Music</c></a>
+                <a onclick="navigateTo('artists')"><c>Artists</c></a>
+                <a onclick="navigateTo('studio')"><c>Studio</c></a>
+                <a onclick="navigateTo('premium')"><c>Mic Drop +</c></a>
+            </div>
+
+            <div class="sbody">
+                <div class="slider-container">
+                    <div class="slider" id="slider">
+                        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=370" alt="Featured Artist 1">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=370" alt="Featured Artist 2">
+                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=370" alt="Studio">
+                    </div>
+                    <div class="dots" id="dots"></div>
+                </div>
+
+                <div class="summers">
+                    <p>New Releases</p>
+                </div>
+
+                <div class="collab">
+                    <p>Mic Drop</p>
+                    <c>X</c>
+                    <a href="https://ig.me/m/2610_patras">2610 ATH</a>
+                </div>
+
+                <div class="cards">
+                    <div class="card">
+                        <img src="https://cdn.glitch.global/e8b8bcbf-c5a8-4555-802b-2d2633cc2966/Screenshot_58.png?v=1689850939892" alt="Album Cover">
+                        <p>25.00€</p>
+                        <a href="https://ig.me/m/2610_patras">
+                            <button><i class="fa-solid fa-cart-plus"></i></button>
+                        </a>
+                    </div>
+                    <div class="rcard">
+                        <img src="https://cdn.glitch.global/e8b8bcbf-c5a8-4555-802b-2d2633cc2966/Screenshot_14.png?v=1689850939389" alt="Album Cover">
+                        <p>26.00€</p>
+                        <a href="https://ig.me/m/2610_patras">
+                            <button><i class="fa-solid fa-cart-plus"></i></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lower">
+                <div class="container">
+                    <span><i class="fa-solid fa-heart-circle-exclamation items"></i></span>
+                    <span><i class="fa-solid fa-house items"></i></span>
+                    <span><button class="brt"><i class="fa-solid fa-bars items"></i></button></span>
+                    <span><i class="fa-solid fa-user-xmark items"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let animationInterval, inputTimeout;
+        let assetsLoaded = 0;
+        let totalAssets = 0;
+        let currentSlide = 0;
+        
+        // Asset loading and progress tracking
+        function trackAssetLoading() {
+            const images = document.querySelectorAll('img');
+            totalAssets = images.length + 1; // +1 for fonts
+            
+            images.forEach(img => {
+                if (img.complete) {
+                    assetsLoaded++;
+                } else {
+                    img.addEventListener('load', () => {
+                        assetsLoaded++;
+                        updateProgress();
+                    });
+                    img.addEventListener('error', () => {
+                        assetsLoaded++;
+                        updateProgress();
+                    });
+                }
+            });
+            
+            // Check for font loading
+            document.fonts.ready.then(() => {
+                assetsLoaded++;
+                updateProgress();
+            });
+            
+            updateProgress();
+        }
+        
+        function updateProgress() {
+            const progress = (assetsLoaded / totalAssets) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            if (progress >= 100) {
+                setTimeout(hideLoadingScreen, 500);
+            }
+        }
+        
+        function hideLoadingScreen() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const mainContent = document.getElementById('mainContent');
+            
+            loadingScreen.classList.add('hidden');
+            mainContent.classList.add('visible');
+            
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                showCookiePopup();
+                initializePlaceholder();
+                initializeSlider();
+            }, 500);
+        }
+        
+        // Cookie Management
+        function showCookiePopup() {
+            const consent = localStorage.getItem('micDropCookieConsent');
+            if (!consent) {
+                document.getElementById('cookiePopup').classList.add('show');
+            }
+        }
+        
+        function acceptCookies() {
+            localStorage.setItem('micDropCookieConsent', 'accepted');
+            localStorage.setItem('micDropCookieDate', new Date().toISOString());
+            hideCookiePopup();
+            console.log('Cookies accepted for Mic Drop Records');
+        }
+        
+        function declineCookies() {
+            localStorage.setItem('micDropCookieConsent', 'declined');
+            localStorage.setItem('micDropCookieDate', new Date().toISOString());
+            hideCookiePopup();
+            console.log('Cookies declined for Mic Drop Records');
+        }
+        
+        function cookieSettings() {
+            alert('Cookie Settings:\n\nEssential Cookies: Always enabled\nAnalytics Cookies: Help us improve our service\nMarketing Cookies: Personalized content\n\nContact: privacy@micdroprecords.com');
+        }
+        
+        function hideCookiePopup() {
+            document.getElementById('cookiePopup').classList.remove('show');
+        }
+        
+        // Search placeholder animation
+        function changePlaceholderWithInterval(inputId, interval, placeholderArray) {
+            const inputElement = document.getElementById("searchbox");
+            let currentIndex = 0;
+            
+            function changePlaceholder() {
+                inputElement.classList.add("placeholder-fade");
+                
+                setTimeout(() => {
+                    inputElement.placeholder = placeholderArray[currentIndex];
+                    currentIndex = (currentIndex + 1) % placeholderArray.length;
+                    inputElement.classList.remove("placeholder-fade");
+                }, 300);
+            }
+            
+            function handleInputTimeout() {
+                animationInterval = setInterval(changePlaceholder, interval);
+            }
+            
+            inputElement.addEventListener("focus", function () {
+                stopAnimation();
+                inputElement.placeholder = placeholderArray[currentIndex];
+            });
+            
+            inputElement.addEventListener("input", function () {
+                clearTimeout(inputTimeout);
+                stopAnimation();
+                inputTimeout = setTimeout(handleInputTimeout, interval);
+            });
+            
+            handleInputTimeout();
+        }
+        
+        function initializePlaceholder() {
+            const placeholders = [
+                "Mic Drop Records",
+                "Search For Whibla",
+                "Search For Danny Stanev", 
+                "Search For Pitsaras",
+                "Search For Vaggelis",
+                "W by (whibla)",
+                "Freestyle by (Danny Stanev)",
+                "Tickets To Whibla",
+                "Tickets To Danny Stanev",
+                "Tickets To Pitsaras",
+                "Tickets To Vaggelis"
+            ];
+            
+            changePlaceholderWithInterval("searchBox", 3500, placeholders);
+        }
+        
+        function stopAnimation() {
+            clearInterval(animationInterval);
+            clearTimeout(inputTimeout);
+        }
+        
+        // Image slider functionality
+        function initializeSlider() {
+            const slider = document.getElementById("slider");
+            const dots = document.getElementById("dots");
+            const images = slider.querySelectorAll("img");
+            const dotElements = [];
+            
+            // Create dots
+            for (let i = 0; i < images.length; i++) {
+                const dot = document.createElement("span");
+                dot.classList.add("dot");
+                dot.addEventListener("click", () => {
+                    currentSlide = i;
+                    updateSlider();
+                });
+                dotElements.push(dot);
+                dots.appendChild(dot);
+            }
+            
+            function updateSlider() {
+                if (currentSlide >= 0 && currentSlide < images.length) {
+                    slider.style.transform = `translateX(-${100 * currentSlide}%)`;
+                    
+                    dotElements.forEach((dot, index) => {
+                        dot.classList.toggle("active", index === currentSlide);
+                    });
+                }
+            }
+            
+            // Auto-advance slider
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % images.length;
+                updateSlider();
+            }, 3500);
+            
+            updateSlider();
+        }
+        
+        // Navigation functions
+        function navigateTo(section) {
+            console.log('Navigating to:', section);
+            // Add your navigation logic here
+            switch(section) {
+                case 'news':
+                    alert('News section - Coming Soon!');
+                    break;
+                case 'music':
+                    alert('New Music section - Coming Soon!');
+                    break;
+                case 'artists':
+                    alert('Artists section - Coming Soon!');
+                    break;
+                case 'studio':
+                    alert('Studio section - Coming Soon!');
+                    break;
+                case 'premium':
+                    alert('Mic Drop + Premium - Coming Soon!');
+                    break;
+            }
+        }
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            trackAssetLoading();
+        });
+        
+        // Handle form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const searchTerm = document.getElementById('searchbox').value;
+            if (searchTerm.trim()) {
+                console.log('Searching for:', searchTerm);
+                alert('Search functionality - Coming Soon!\nSearching for: ' + searchTerm);
+            }
+        });
+        
+        // Mobile device detection and PC blocking
+        function isMobileDevice() {
+            const userAgent = navigator.userAgent;
+            const mobileKeywords = [
+                "Android", "webOS", "iPhone", "iPad", "iPod", 
+                "BlackBerry", "Windows Phone", "Mobile", "Tablet"
+            ];
+            
+            return mobileKeywords.some(keyword => 
+                userAgent.indexOf(keyword) !== -1
+            );
+        }
+        
+        // Check if accessing from PC on smaller screens
+        if (window.innerWidth >= 768 && !isMobileDevice()) {
+            document.querySelector('.mobile-content').style.display = 'none';
+            document.querySelector('.desktop-warning').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>

@@ -4,11 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import AlbumCard from "@/components/album-card";
 import ArtistCard from "@/components/artist-card";
-import { Play, ChevronDown } from "lucide-react";
+import { Play, ChevronDown, X } from "lucide-react";
 import type { ReleaseWithArtist, Artist, News } from "@shared/schema";
 
 export default function Home() {
   const [showLoadingScreen, setShowLoadingScreen] = useState(true);
+  const [showCookiePopup, setShowCookiePopup] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [assetsLoaded, setAssetsLoaded] = useState(0);
 
   const { data: featuredReleases = [] } = useQuery<ReleaseWithArtist[]>({
     queryKey: ["/api/releases/featured"],
