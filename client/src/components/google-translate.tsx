@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
 
@@ -12,6 +12,15 @@ declare global {
 export default function GoogleTranslate() {
   const [isTranslateLoaded, setIsTranslateLoaded] = useState(false);
   const [showTranslateWidget, setShowTranslateWidget] = useState(false);
+  const [userCountry, setUserCountry] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Detect user country on mount
+    fetch("https://ipapi.co/json/")
+      .then((res) => res.json())
+      .then((data) => setUserCountry(data.country_code))
+      .catch(() => setUserCountry(null));
+  }, []);
 
   const initializeGoogleTranslate = () => {
     if (window.google && window.google.translate) {
@@ -57,23 +66,36 @@ export default function GoogleTranslate() {
     }
   };
 
+  // Reserve space for the widget so the button doesn't move.
+  // You can adjust the minHeight as needed for your UI.
   return (
-    <div className="fixed top-20 right-4 z-40">
+    <div className="fixed top-20 right-4 z-40 w-64">
       <Button
         onClick={handleTranslateClick}
         variant="outline"
         size="sm"
-        className="bg-black border-gray-600 text-white hover:bg-gray-800 hover:text-white"
+        className="bg-black border-gray-600 text-white hover:bg-gray-800 hover:text-white w-full"
         title="Translate Page"
       >
         <Globe className="h-4 w-4 mr-1" />
         Translate
+        {userCountry && !["US", "GB", "AU", "CA"].includes(userCountry) && (
+          <span className="ml-2 text-xs text-yellow-400">(Detected: {userCountry})</span>
+        )}
       </Button>
       <div
         id="google_translate_element"
         className="mt-2 bg-black rounded-lg border border-gray-600 p-2"
-        style={{ display: showTranslateWidget ? "block" : "none" }}
+        style={{
+          display: showTranslateWidget ? "block" : "none",
+          minHeight: 48, // Reserve space so button doesn't jump; adjust as needed
+          position: "relative"
+        }}
       ></div>
+      {/* Invisible placeholder to reserve vertical space for translate widget */}
+      {!showTranslateWidget && (
+        <div style={{ minHeight: 48, visibility: "hidden" }}></div>
+      )}
       <style
         dangerouslySetInnerHTML={{
           __html: `
