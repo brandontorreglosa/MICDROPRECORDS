@@ -1,8 +1,6 @@
 /**
- * Loading screen and asset management utilities
- * Based on the original Mic Drop Records implementation
- *
- * Now supports a fade-out effect for the loading screen for a more professional look.
+ * Handles the loading screen and asset management for Mic Drop Records.
+ * Includes a fade-out effect for the loading screen.
  */
 
 export class LoadingManager {
@@ -11,14 +9,13 @@ export class LoadingManager {
     this.loadedAssets = 0;
     this.onProgressUpdate = null;
     this.onComplete = null;
-    this.fadeDuration = 500; // ms, match with CSS
+    this.fadeDuration = 800; // ms, matches CSS transition
   }
 
   /**
-   * Initialize asset tracking and loading
+   * Initializes tracking for images and fonts.
    */
   initializeTracking() {
-    // Track images
     const images = document.querySelectorAll('img');
     this.totalAssets = images.length + 1; // +1 for fonts
 
@@ -35,13 +32,12 @@ export class LoadingManager {
     if (document.fonts) {
       document.fonts.ready.then(() => this.updateProgress());
     } else {
-      // Fallback for older browsers
       setTimeout(() => this.updateProgress(), 100);
     }
   }
 
   /**
-   * Update loading progress
+   * Updates the progress bar and triggers completion if done.
    */
   updateProgress() {
     this.loadedAssets++;
@@ -52,117 +48,41 @@ export class LoadingManager {
     }
 
     if (progress >= 100 && this.onComplete) {
-      // Instead of instantly hiding the loader, fade out
-      setTimeout(() => {
-        this.fadeOutLoader();
-      }, 500);
+      setTimeout(() => this.fadeOutLoader(), 500);
     }
   }
 
   /**
-   * Triggers fade-out effect and calls onComplete after fade
+   * Fades out the loading screen and then completes.
    */
   fadeOutLoader() {
     const loader = document.getElementById('loadingScreen');
     const mainContent = document.getElementById('mainContent');
     if (loader) {
-      loader.classList.add('hidden'); // triggers CSS fade-out transition
-
+      loader.classList.add('hidden'); // triggers CSS fade-out
       setTimeout(() => {
         loader.style.display = 'none';
         if (mainContent) {
-          mainContent.classList.add('visible'); // fade in main content after loader fades out
+          mainContent.classList.add('visible');
         }
         if (this.onComplete) this.onComplete();
-      }, this.fadeDuration); // Wait for fade to finish before removing from DOM
+      }, this.fadeDuration);
     } else {
-      // If loader not found, just call onComplete
       if (this.onComplete) this.onComplete();
     }
   }
 
   /**
-   * Set progress callback
+   * Set a callback for progress updates.
    */
   setProgressCallback(callback) {
     this.onProgressUpdate = callback;
   }
 
   /**
-   * Set completion callback
+   * Set a callback for completion.
    */
   setCompleteCallback(callback) {
     this.onComplete = callback;
-  }
-}
-
-/**
- * Cookie management utilities
- */
-export class CookieManager {
-  static CONSENT_KEY = 'micDropCookieConsent';
-  static DATE_KEY = 'micDropCookieDate';
-
-  static hasConsent() {
-    return localStorage.getItem(this.CONSENT_KEY) !== null;
-  }
-
-  static acceptCookies() {
-    localStorage.setItem(this.CONSENT_KEY, 'accepted');
-    localStorage.setItem(this.DATE_KEY, new Date().toISOString());
-  }
-
-  static declineCookies() {
-    localStorage.setItem(this.CONSENT_KEY, 'declined');
-    localStorage.setItem(this.DATE_KEY, new Date().toISOString());
-  }
-
-  static getConsentStatus() {
-    return localStorage.getItem(this.CONSENT_KEY);
-  }
-
-  static getConsentDate() {
-    const date = localStorage.getItem(this.DATE_KEY);
-    return date ? new Date(date) : null;
-  }
-
-  static clearConsent() {
-    localStorage.removeItem(this.CONSENT_KEY);
-    localStorage.removeItem(this.DATE_KEY);
-  }
-}
-
-/**
- * Mobile and responsive utilities
- */
-export class ResponsiveUtils {
-  static isMobile() {
-    return window.innerWidth <= 768;
-  }
-
-  static isTablet() {
-    return window.innerWidth > 768 && window.innerWidth <= 1024;
-  }
-
-  static isDesktop() {
-    return window.innerWidth > 1024;
-  }
-
-  static getDeviceType() {
-    if (this.isMobile()) return 'mobile';
-    if (this.isTablet()) return 'tablet';
-    return 'desktop';
-  }
-
-  static onResize(callback) {
-    let timeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(timeout);
-      timeout = setTimeout(callback, 100);
-    });
-  }
-
-  static isTouchDevice() {
-    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   }
 }
