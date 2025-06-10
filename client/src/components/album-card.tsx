@@ -30,13 +30,13 @@ export default function AlbumCard({ release }: AlbumCardProps) {
 
   return (
     <Card className="bg-gray-800/50 border-gray-700 overflow-hidden group album-hover cursor-pointer">
-      <div className="relative">
+      <div className="relative overflow-hidden">
         <img 
           src={release.image || 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400'} 
           alt={release.title} 
           className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
         />
-        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
           <Button 
             onClick={handlePlay}
             className="bg-purple-600 hover:bg-purple-700 text-white rounded-full p-4"
