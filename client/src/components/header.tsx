@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Search, Menu, User, ShoppingCart } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
 import ShoppingCartComponent from "./shopping-cart";
-import logoImage from "@assets/freepik__enhance__16119_1749484784408.png";
+import logoImage from "@assets/freepik__enhance__16119_cropped.png";
 
 export default function Header() {
   const [location] = useLocation();
