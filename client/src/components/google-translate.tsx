@@ -27,7 +27,7 @@ export default function GoogleTranslate() {
       new window.google.translate.TranslateElement(
         {
           pageLanguage: 'en',
-          includedLanguages: 'es,fr,de,it,pt,ru,zh,ja,ko,ar,nl,sv,no,da,fi,pl',
+          includedLanguages: 'es,fr,de,it,pt,ru,zh,ja,ko,ar,nl,sv,no,da,fi,pl,el',
           layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
           autoDisplay: false,
         },
