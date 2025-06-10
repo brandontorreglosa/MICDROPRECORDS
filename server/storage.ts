@@ -66,9 +66,9 @@ export class MemStorage implements IStorage {
     const artistsData: InsertArtist[] = [
       {
         name: "XAP",
-        bio: "Rising star with ethereal vocals and introspective lyrics that resonate with Gen Z audiences.",
+        bio: "A rising star from Greece, known for his talent and voice. an inspirational artist well known for his work.",
         genre: "Drill / Trap",
-        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+        image: "https://audio.com/s3w/audio.com.static/audio/image/78/50/1833011070245078-1833085425532691.jpeg@256?qlt=75",
         spotifyUrl: "https://spotify.com/artist/xap",
         instagramUrl: "https://instagram.com/officialxap",
         youtubeUrl: "https://youtube.com/officialxap",
@@ -79,6 +79,9 @@ export class MemStorage implements IStorage {
         bio: "Experimental electronic duo pushing boundaries with innovative soundscapes and live visuals.",
         genre: "Electronic",
         image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+        spotifyUrl: "",
+        instagramUrl: "",
+        youtubeUrl: "",
         featured: true,
       },
       {
@@ -86,6 +89,9 @@ export class MemStorage implements IStorage {
         bio: "Street poet turned chart-topper, known for his conscious rap and community activism.",
         genre: "Hip-Hop",
         image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+        spotifyUrl: "",
+        instagramUrl: "",
+        youtubeUrl: "",
         featured: true,
       },
       {
@@ -93,6 +99,9 @@ export class MemStorage implements IStorage {
         bio: "Four-piece indie rock band blending nostalgic melodies with modern production techniques.",
         genre: "Indie Rock",
         image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+        spotifyUrl: "",
+        instagramUrl: "",
+        youtubeUrl: "",
         featured: true,
       },
       {
@@ -100,6 +109,9 @@ export class MemStorage implements IStorage {
         bio: "Virtuoso saxophonist bridging traditional jazz with contemporary R&B and neo-soul influences.",
         genre: "Contemporary Jazz",
         image: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+        spotifyUrl: "",
+        instagramUrl: "",
+        youtubeUrl: "",
         featured: true,
       },
       {
@@ -107,6 +119,9 @@ export class MemStorage implements IStorage {
         bio: "Singer-songwriter crafting intimate stories through acoustic melodies and poetic lyricism.",
         genre: "Indie Folk",
         image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+        spotifyUrl: "",
+        instagramUrl: "",
+        youtubeUrl: "",
         featured: true,
       },
     ];
