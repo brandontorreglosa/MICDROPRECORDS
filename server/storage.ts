@@ -153,7 +153,7 @@ export class MemStorage implements IStorage {
       {
         title: "Alhths",
         artistId: 3, // Δ!?
-        genre: "Hip-Hop",
+        genre: "Hip-Hop / Rap",
         price: "22.00",
         image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
         featured: true,
@@ -187,7 +187,7 @@ export class MemStorage implements IStorage {
         artistId: 1, // XAP
         genre: "Drill / Trap",
         price: "20.00",
-        image: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+        image: "https://github.com/brandontorreglosa/MICDROPRECORDS/blob/main/attached_assets/Untitled.png?raw=true",
         featured: true,
       },
       {
@@ -216,8 +216,8 @@ export class MemStorage implements IStorage {
       },
       {
         title: "New Collaboration Album in Progress",
-        content: "Echo Valley and XAP team up for an experimental cross-genre album set to release in early 2025.",
-        excerpt: "Echo Valley and XAP team up for an experimental cross-genre album set to release in early 2025.",
+        content: "Δ!? and XAP team up for an experimental cross-genre album set to release in early 2025.",
+        excerpt: "Δ!? and XAP team up for an experimental cross-genre album set to release in early 2025.",
         image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
         category: "Studio",
         featured: true,
