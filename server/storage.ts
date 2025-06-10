@@ -76,7 +76,7 @@ export class MemStorage implements IStorage {
       },
       {
         name: "Whibla",
-        bio: "Experimental rapper with crazy vocals, inspired by Yolte. Name comes from black and white.",
+        bio: "Experimental rapper with crazy vocals, inspired by Yolte. Name comes from black and white. W big whibla wins!",
         genre: "Rap / Trap",
         image: "https://i.scdn.co/image/ab6761610000e5eb9e05c53c69098a6793661bbb",
         spotifyUrl: "https://open.spotify.com/artist/1HsVxvW9T1spyv9VZU7HqR",
@@ -86,7 +86,7 @@ export class MemStorage implements IStorage {
       },
       {
         name: "Δ!?",
-        bio: "A mysterious singer of the hip-hop scene, deepest voice you can hear.",
+        bio: "A mysterious singer of the hip-hop scene, deepest voice you have ever heard, he is a Alhths afterall.",
         genre: "Hip-hop / Rap",
         image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
         spotifyUrl: "",
@@ -146,7 +146,7 @@ export class MemStorage implements IStorage {
         title: "LA City",
         artistId: 1, // XAP
         genre: "Drill / Trap",
-        price: "28.00",
+        price: "21.00",
         image: "https://github.com/brandontorreglosa/MICDROPRECORDS/blob/main/attached_assets/LA-City-cover.jpg?raw=true",
         featured: true,
       },
