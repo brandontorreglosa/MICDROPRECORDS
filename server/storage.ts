@@ -147,7 +147,7 @@ export class MemStorage implements IStorage {
         artistId: 1, // XAP
         genre: "Drill / Trap",
         price: "28.00",
-        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+        image: "https://github.com/brandontorreglosa/MICDROPRECORDS/blob/main/attached_assets/LA-City-cover.jpg?raw=true",
         featured: true,
       },
       {
