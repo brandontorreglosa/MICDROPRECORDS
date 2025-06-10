@@ -88,7 +88,7 @@ export class MemStorage implements IStorage {
         name: "Δ!?",
         bio: "A mysterious singer of the hip-hop scene, deepest voice you have ever heard, he is a Alhths afterall.",
         genre: "Hip-hop / Rap",
-        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+        image: "https://github.com/brandontorreglosa/MICDROPRECORDS/blob/main/attached_assets/500414798_18117619318462485_3195086209142985119_n.jpg?raw=true",
         spotifyUrl: "",
         instagramUrl: "https://www.instagram.com/kardakoss/",
         youtubeUrl: "",
