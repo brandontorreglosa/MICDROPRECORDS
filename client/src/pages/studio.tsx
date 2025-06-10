@@ -232,17 +232,17 @@ export default function Studio() {
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
                       <MapPin className="h-5 w-5 text-purple-500" />
-                      <span className="text-gray-300">Athens, Greece</span>
+                      <span className="text-gray-300">Kato Achaia, Greece</span>
                     </div>
                     
                     <div className="flex items-center space-x-3">
                       <Phone className="h-5 w-5 text-pink-500" />
-                      <span className="text-gray-300">+30 123 456 7890</span>
+                      <span className="text-gray-300">+30 694 921 2307</span>
                     </div>
                     
                     <div className="flex items-center space-x-3">
                       <Mail className="h-5 w-5 text-cyan-500" />
-                      <span className="text-gray-300">studio@micdroprecords.com</span>
+                      <span className="text-gray-300">micdropstudio.buisness@gmail.com</span>
                     </div>
                   </div>
                 </CardContent>
@@ -254,15 +254,15 @@ export default function Studio() {
                   <div className="space-y-2 text-gray-300">
                     <div className="flex justify-between">
                       <span>Monday - Friday</span>
-                      <span>9:00 AM - 10:00 PM</span>
+                      <span>4:30 PM - 9:30 PM</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Saturday</span>
-                      <span>10:00 AM - 8:00 PM</span>
+                      <span>2:30 PM - 8:00 PM</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Sunday</span>
-                      <span>By Appointment</span>
+                      <span>Closed</span>
                     </div>
                   </div>
                 </CardContent>
