@@ -139,8 +139,10 @@
   }
 
   .album-hover:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease-in-out;
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 8px 32px rgba(128,0,192,0.32), 0 2px 8px rgba(0,0,0,0.25);
+  z-index: 2;
   }
 
   .glass-effect {
