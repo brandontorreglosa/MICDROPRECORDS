@@ -75,13 +75,13 @@ export class MemStorage implements IStorage {
         featured: true,
       },
       {
-        name: "Echo Valley",
-        bio: "Experimental electronic duo pushing boundaries with innovative soundscapes and live visuals.",
-        genre: "Electronic",
-        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-        spotifyUrl: "",
-        instagramUrl: "",
-        youtubeUrl: "",
+        name: "Whibla",
+        bio: "Experimental rapper with crazy vocals, inspired by Yolte. Name comes from black and white.",
+        genre: "Rap / Trap",
+        image: "https://instagram.fath7-1.fna.fbcdn.net/v/t51.2885-15/474582091_18358916557193193_6862765889546226719_n.webp?efg=eyJ2ZW5jb2RlX3RhZyI6IkNBUk9VU0VMX0lURU0uaW1hZ2VfdXJsZ2VuLjE0NDB4MTQ0MC5zZHIuZjc1NzYxLmRlZmF1bHRfaW1hZ2UifQ&_nc_ht=instagram.fath7-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2QE8rLLXlDU7i4nFkv14UP6RcZBzAbKl0PeDiBYAzFC83XtNV2RefAG067zjVIoov6s&_nc_ohc=M0H5mFFtnx0Q7kNvwF0dQqs&_nc_gid=ssNP0Ks76ZQnbzu0WlZQ1w&edm=AP4sbd4BAAAA&ccb=7-5&ig_cache_key=MzU1MTE5MjYzNDgxNjA0NTAwMg%3D%3D.3-ccb7-5&oh=00_AfPU_yXMcjmqe7czMrAxpb6qi6m594_XM1Zm11JkbUO7VQ&oe=684D4D26&_nc_sid=7a9f4b",
+        spotifyUrl: "https://open.spotify.com/artist/1HsVxvW9T1spyv9VZU7HqR",
+        instagramUrl: "https://www.instagram.com/whibla537/",
+        youtubeUrl: "https://www.youtube.com/@Whibla537",
         featured: true,
       },
       {
@@ -133,13 +133,13 @@ export class MemStorage implements IStorage {
     // Seed releases
     const releasesData: InsertRelease[] = [
       {
-        title: "Neon Nights",
-        artistId: 2, // Echo Valley
-        genre: "Electronic",
-        price: "25.00",
-        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+        title: "Rich Laugh",
+        artistId: 2, // Whibla
+        genre: "Rap / Trap",
+        price: "15.00",
+        image: "https://i.scdn.co/image/ab67616d0000b2738e8acec5179a5e63c1c72b91",
         audioUrl: "https://example.com/audio/neon-nights.mp3",
-        description: "A journey through synthetic dreams and electric emotions.",
+        description: "Will not stop until i achieve that rich laugh.",
         featured: true,
       },
       {
@@ -175,18 +175,18 @@ export class MemStorage implements IStorage {
         featured: true,
       },
       {
-        title: "Digital Horizons",
-        artistId: 2, // Echo Valley
-        genre: "Electronic",
-        price: "27.00",
-        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+        title: "W",
+        artistId: 2, // Whibla
+        genre: "Rap / Trap",
+        price: "20.00",
+        image: "https://i.scdn.co/image/ab67616d0000b27384ec1deb585c2034a749ef6e",
         featured: true,
       },
       {
         title: "Pablo Esco",
         artistId: 1, // XAP
-        genre: "",
-        price: "13.00",
+        genre: "Drill / Trap",
+        price: "20.00",
         image: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
         featured: true,
       },
