@@ -1,8 +1,3 @@
-/**
- * Handles the loading screen and asset management for Mic Drop Records.
- * Includes a fade-out effect for the loading screen.
- */
-
 export class LoadingManager {
   constructor() {
     this.totalAssets = 0;
