@@ -40,7 +40,7 @@ export default function Header() {
                 className="font-bold text-sm sm:text-lg text-white whitespace-nowrap" 
                 style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}
               >
-                Mic Drop Records
+                &nbsp;&nbsp;Mic Drop Records
               </div>
             </Link>
 
