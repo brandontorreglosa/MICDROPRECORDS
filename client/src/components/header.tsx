@@ -38,7 +38,7 @@ export default function Header() {
             {/* Logo + Brand */}
             <Link
               href="/"
-              className="flex items-center min-w-0 flex-shrink gap-3 sm:gap-4"
+              className="flex items-center min-w-0 flex-shrink"
             >
               <img
                 className="h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0"
@@ -46,7 +46,7 @@ export default function Header() {
                 alt="Mic Drop Records Logo"
               />
               <span
-                className="font-bold text-sm sm:text-lg text-white whitespace-nowrap overflow-x-auto scrollbar-hide min-w-0 flex-1"
+                className="font-bold text-sm sm:text-lg text-white whitespace-nowrap overflow-x-auto scrollbar-hide min-w-0 flex-1 ml-6"
                 style={{
                   fontFamily: '"Special Gothic Expanded One", sans-serif',
                   WebkitOverflowScrolling: 'touch'
