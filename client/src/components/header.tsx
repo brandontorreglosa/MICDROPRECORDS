@@ -29,19 +29,19 @@ export default function Header() {
       <header className="sticky top-0 z-40 bg-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
+            {/* Logo & Brand */}
+            <Link href="/" className="flex items-center gap-2 flex-shrink-0">
               <img 
-                className="h-8 w-8 sm:h-10 sm:w-10" 
+                className="h-9 w-9 object-contain" 
                 src={logoImage} 
                 alt="Mic Drop Records Logo"
               />
-              <div 
-                className="font-bold text-sm sm:text-lg text-white whitespace-nowrap" 
+              <span
+                className="font-bold text-lg text-white tracking-wide flex items-center"
                 style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}
               >
-                &nbsp;&nbsp;&nbsp;Mic Drop Records
-              </div>
+                MIC DROP RECORDS
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
