@@ -63,7 +63,7 @@ export default function Header() {
               <div className="flex flex-row items-center min-w-0 overflow-x-auto scrollbar-hide space-x-4 md:space-x-6 lg:space-x-8">
                 <Link
                   href="/"
-                  className={`transition-colors duration-200 font-medium whitespace-nowrap ${
+                  className={`ml-6 transition-colors duration-200 font-medium whitespace-nowrap ${
                     location === "/" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
                 >
