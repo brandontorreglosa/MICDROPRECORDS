@@ -7,12 +7,6 @@ import { useCart } from "@/hooks/use-cart";
 import ShoppingCartComponent from "./shopping-cart";
 import logoImage from "@assets/freepik__enhance__16119_cropped.png";
 
-// Optional: Hide scrollbar for all browsers
-const hideScrollbarCss = `
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
-  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-`;
-
 export default function Header() {
   const [location] = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
@@ -32,28 +26,20 @@ export default function Header() {
 
   return (
     <>
-      {/* Hide scrollbar (optional) */}
-      <style>{hideScrollbarCss}</style>
       <header className="sticky top-0 z-40 bg-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* min-w-0 allows flex children to shrink if needed */}
           <div className="flex items-center justify-between h-16 min-w-0">
-            {/* Logo and Brand */}
-            <Link href="/" className="flex items-center space-x-4 sm:space-x-5 flex-shrink-0 min-w-0">
-              <img
+            {/* Logo */}
+            <Link href="/" className="flex items-center space-x-6 sm:space-x-6 flex-shrink min-w-0">
+              <img 
                 className="h-8 w-8 sm:h-10 sm:w-10"
-                src={logoImage}
+                src={logoImage} 
                 alt="Mic Drop Records Logo"
               />
-              <div
-                className="font-bold text-sm sm:text-lg text-white whitespace-nowrap overflow-x-auto scrollbar-hide"
-                style={{
-                  fontFamily: '"Special Gothic Expanded One", sans-serif',
-                  maxWidth: 160, // Or whatever width fits your layout
-                  WebkitOverflowScrolling: 'touch', // Smooth scrolling on mobile
-                  cursor: 'pointer'
-                }}
-                tabIndex={0} // Allows keyboard scroll
-                title="Mic Drop Records"
+              <div 
+                className="font-bold text-sm sm:text-lg text-white whitespace-nowrap truncate" 
+                style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}
               >
                 Mic Drop Records
               </div>
@@ -61,40 +47,40 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8">
-              <Link
-                href="/"
+              <Link 
+                href="/" 
                 className={`transition-colors duration-200 font-medium ${
                   location === "/" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                 }`}
               >
                 Home
               </Link>
-              <Link
-                href="/releases"
+              <Link 
+                href="/releases" 
                 className={`transition-colors duration-200 font-medium ${
                   location === "/releases" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                 }`}
               >
                 New Music
               </Link>
-              <Link
-                href="/artists"
+              <Link 
+                href="/artists" 
                 className={`transition-colors duration-200 font-medium ${
                   location.startsWith("/artist") ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                 }`}
               >
                 Artists
               </Link>
-              <Link
-                href="/studio"
+              <Link 
+                href="/studio" 
                 className={`transition-colors duration-200 font-medium ${
                   location === "/studio" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                 }`}
               >
                 Studio
               </Link>
-              <Link
-                href="/news"
+              <Link 
+                href="/news" 
                 className={`transition-colors duration-200 font-medium ${
                   location === "/news" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                 }`}
@@ -120,10 +106,10 @@ export default function Header() {
                       className="w-64 pr-10 bg-gray-900 border-gray-600 focus:border-white text-white"
                       maxLength={50}
                     />
-                    <Button
-                      type="submit"
-                      size="sm"
-                      variant="ghost"
+                    <Button 
+                      type="submit" 
+                      size="sm" 
+                      variant="ghost" 
                       className="absolute right-1 top-1/2 transform -translate-y-1/2 p-2"
                     >
                       <Search className="h-4 w-4 text-gray-400" />
@@ -179,10 +165,10 @@ export default function Header() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pr-10 bg-gray-900 border-gray-600 focus:border-white text-white"
                   />
-                  <Button
-                    type="submit"
-                    size="sm"
-                    variant="ghost"
+                  <Button 
+                    type="submit" 
+                    size="sm" 
+                    variant="ghost" 
                     className="absolute right-1 top-1/2 transform -translate-y-1/2 p-2"
                   >
                     <Search className="h-4 w-4 text-gray-400" />
@@ -192,8 +178,8 @@ export default function Header() {
 
               {/* Mobile Navigation Links */}
               <nav className="space-y-2">
-                <Link
-                  href="/"
+                <Link 
+                  href="/" 
                   className={`block py-2 transition-colors duration-200 ${
                     location === "/" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
@@ -201,8 +187,8 @@ export default function Header() {
                 >
                   Home
                 </Link>
-                <Link
-                  href="/releases"
+                <Link 
+                  href="/releases" 
                   className={`block py-2 transition-colors duration-200 ${
                     location === "/releases" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
@@ -210,8 +196,8 @@ export default function Header() {
                 >
                   New Music
                 </Link>
-                <Link
-                  href="/artists"
+                <Link 
+                  href="/artists" 
                   className={`block py-2 transition-colors duration-200 ${
                     location.startsWith("/artist") ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
@@ -219,8 +205,8 @@ export default function Header() {
                 >
                   Artists
                 </Link>
-                <Link
-                  href="/studio"
+                <Link 
+                  href="/studio" 
                   className={`block py-2 transition-colors duration-200 ${
                     location === "/studio" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
@@ -228,8 +214,8 @@ export default function Header() {
                 >
                   Studio
                 </Link>
-                <Link
-                  href="/news"
+                <Link 
+                  href="/news" 
                   className={`block py-2 transition-colors duration-200 ${
                     location === "/news" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
