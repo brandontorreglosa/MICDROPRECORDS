@@ -30,14 +30,14 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo & Brand */}
-            <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+            <Link href="/" className="flex items-center gap-3 flex-shrink-0">
               <img 
-                className="h-9 w-9 object-contain" 
+                className="h-8 w-8 sm:h-10 sm:w-10" 
                 src={logoImage} 
                 alt="Mic Drop Records Logo"
               />
               <span
-                className="font-bold text-lg text-white tracking-wide flex items-center"
+                className="font-bold text-base sm:text-2xl md:text-3xl lg:text-4xl text-white tracking-wide"
                 style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}
               >
                 MIC DROP RECORDS
