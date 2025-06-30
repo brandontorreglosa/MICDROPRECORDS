@@ -30,7 +30,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
+            <Link href="/" className="flex items-center space-x-4 sm:space-x-5 flex-shrink-0">
               <img 
                 className="h-8 w-8 sm:h-10 sm:w-10"
                 src={logoImage} 
