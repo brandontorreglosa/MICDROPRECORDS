@@ -7,7 +7,7 @@ import { useCart } from "@/hooks/use-cart";
 import ShoppingCartComponent from "./shopping-cart";
 import logoImage from "@assets/freepik__enhance__16119_cropped.png";
 
-// Optional: Hide scrollbar for polish (you can omit if you want scroll indicator)
+// Optional: Hide scrollbar for polish
 const hideScrollbarCss = `
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
@@ -33,7 +33,7 @@ export default function Header() {
     <>
       <style>{hideScrollbarCss}</style>
       <header className="sticky top-0 z-40 bg-black border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           <div className="flex items-center h-16 min-w-0">
             {/* Logo + Brand */}
             <Link
@@ -59,11 +59,11 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex flex-1 min-w-0 justify-center">
-              <div className="flex space-x-6 overflow-x-auto scrollbar-hide min-w-0">
+            <nav className="hidden md:flex flex-1 min-w-0">
+              <div className="flex flex-row items-center min-w-0 overflow-x-auto scrollbar-hide space-x-4 md:space-x-6 lg:space-x-8">
                 <Link
                   href="/"
-                  className={`transition-colors duration-200 font-medium ${
+                  className={`transition-colors duration-200 font-medium whitespace-nowrap ${
                     location === "/" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
                 >
@@ -71,7 +71,7 @@ export default function Header() {
                 </Link>
                 <Link
                   href="/releases"
-                  className={`transition-colors duration-200 font-medium ${
+                  className={`transition-colors duration-200 font-medium whitespace-nowrap ${
                     location === "/releases" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
                 >
@@ -79,7 +79,7 @@ export default function Header() {
                 </Link>
                 <Link
                   href="/artists"
-                  className={`transition-colors duration-200 font-medium ${
+                  className={`transition-colors duration-200 font-medium whitespace-nowrap ${
                     location.startsWith("/artist") ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
                 >
@@ -87,7 +87,7 @@ export default function Header() {
                 </Link>
                 <Link
                   href="/studio"
-                  className={`transition-colors duration-200 font-medium ${
+                  className={`transition-colors duration-200 font-medium whitespace-nowrap ${
                     location === "/studio" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
                 >
@@ -95,13 +95,13 @@ export default function Header() {
                 </Link>
                 <Link
                   href="/news"
-                  className={`transition-colors duration-200 font-medium ${
+                  className={`transition-colors duration-200 font-medium whitespace-nowrap ${
                     location === "/news" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
                   }`}
                 >
                   News
                 </Link>
-                <span className="text-gray-400 hover:text-white transition-colors duration-200 font-medium cursor-pointer">
+                <span className="text-gray-400 hover:text-white transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap">
                   Mic Drop +
                 </span>
               </div>
