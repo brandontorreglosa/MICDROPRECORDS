@@ -29,10 +29,13 @@ export default function Header() {
 
   const cartItemCount = (items || []).reduce((total, item) => total + (item.quantity || 1), 0);
 
+  // Define the same margin as between nav links (ml-6) for the left padding on mobile
+  // Use pl-6 for the whole header on mobile, and remove (pl-0) on sm+ for classic layout
+  // Remove ml-4 or ml-0 from logo container to prevent double margin
   return (
     <>
       <style>{hideScrollbarCss}</style>
-      <header className="sticky top-0 z-40 bg-black border-b border-gray-800">
+      <header className="sticky top-0 z-40 bg-black border-b border-gray-800 pl-6 sm:pl-0">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           <div className="flex items-center h-16 min-w-0">
             {/* Logo + Brand */}
