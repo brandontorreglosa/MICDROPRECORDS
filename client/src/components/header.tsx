@@ -22,26 +22,26 @@ export default function Header() {
     }
   };
 
-  const cartItemCount = items.reduce((total, item) => total + (item.quantity || 1), 0);
+  const cartItemCount = (items || []).reduce((total, item) => total + (item.quantity || 1), 0);
 
   return (
     <>
       <header className="sticky top-0 z-40 bg-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo & Brand */}
-            <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+            {/* Logo */}
+            <Link href="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
               <img 
-                className="h-8 w-8 sm:h-10 sm:w-10" 
+                className="h-8 w-8 sm:h-10 sm:w-10"
                 src={logoImage} 
                 alt="Mic Drop Records Logo"
               />
-              <span
-                className="font-bold text-base sm:text-2xl md:text-3xl lg:text-4xl text-white tracking-wide"
+              <div 
+                className="font-bold text-sm sm:text-lg text-white whitespace-nowrap" 
                 style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}
               >
-                MIC DROP RECORDS
-              </span>
+                Mic Drop Records
+              </div>
             </Link>
 
             {/* Desktop Navigation */}
