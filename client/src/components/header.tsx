@@ -7,6 +7,18 @@ import { useCart } from "@/hooks/use-cart";
 import ShoppingCartComponent from "./shopping-cart";
 import logoImage from "@assets/freepik__enhance__16119_cropped.png";
 
+// Optional: Use this if you don't have the scrollbar-hide plugin
+const hideScrollbarStyle = {
+  scrollbarWidth: 'none',         // Firefox
+  msOverflowStyle: 'none',        // IE 10+
+  overflowY: 'hidden',
+};
+const hideScrollbarCss = `
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
 export default function Header() {
   const [location] = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,20 +38,26 @@ export default function Header() {
 
   return (
     <>
+      {/* Style tag for scrollbar hide if not using plugin */}
+      <style>{hideScrollbarCss}</style>
       <header className="sticky top-0 z-40 bg-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* min-w-0 allows flex children to shrink if needed */}
           <div className="flex items-center justify-between h-16 min-w-0">
-            {/* Logo */}
-            <Link href="/" className="flex items-center space-x-4 sm:space-x-5 flex-shrink min-w-0">
+            {/* Logo and Brand */}
+            <Link href="/" className="flex items-center space-x-4 sm:space-x-5 flex-shrink-0 min-w-0">
               <img 
                 className="h-8 w-8 sm:h-10 sm:w-10"
                 src={logoImage} 
                 alt="Mic Drop Records Logo"
               />
-              <div 
-                className="font-bold text-sm sm:text-lg text-white whitespace-nowrap truncate" 
-                style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}
+              <div
+                className="font-bold text-sm sm:text-lg text-white whitespace-nowrap overflow-x-auto scrollbar-hide"
+                style={{
+                  fontFamily: '"Special Gothic Expanded One", sans-serif',
+                  maxWidth: 180,
+                  ...hideScrollbarStyle
+                }}
+                tabIndex={0}
               >
                 Mic Drop Records
               </div>
