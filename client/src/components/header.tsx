@@ -7,7 +7,7 @@ import { useCart } from "@/hooks/use-cart";
 import ShoppingCartComponent from "./shopping-cart";
 import logoImage from "@assets/freepik__enhance__16119_cropped.png";
 
-// Hide scrollbar utility (optional, for visual polish)
+// Optional: Hide scrollbar for polish (you can omit if you want scroll indicator)
 const hideScrollbarCss = `
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
@@ -34,32 +34,28 @@ export default function Header() {
       <style>{hideScrollbarCss}</style>
       <header className="sticky top-0 z-40 bg-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Flex: logo/brand | nav | actions */}
           <div className="flex items-center h-16 min-w-0">
             {/* Logo + Brand */}
             <Link
               href="/"
-              className="flex items-center flex-shrink-0 min-w-0"
-              style={{ maxWidth: 210 }}
+              className="flex items-center min-w-0 flex-shrink gap-3 sm:gap-4"
             >
               <img
                 className="h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0"
                 src={logoImage}
                 alt="Mic Drop Records Logo"
               />
-              <div
-                className="ml-3 font-bold text-sm sm:text-lg text-white whitespace-nowrap overflow-x-auto scrollbar-hide"
+              <span
+                className="font-bold text-sm sm:text-lg text-white whitespace-nowrap overflow-x-auto scrollbar-hide min-w-0 flex-1"
                 style={{
                   fontFamily: '"Special Gothic Expanded One", sans-serif',
-                  maxWidth: 140,
-                  WebkitOverflowScrolling: 'touch',
-                  cursor: 'pointer',
+                  WebkitOverflowScrolling: 'touch'
                 }}
                 tabIndex={0}
                 title="Mic Drop Records"
               >
                 Mic Drop Records
-              </div>
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -111,7 +107,7 @@ export default function Header() {
               </div>
             </nav>
 
-            {/* Search & Actions */}
+            {/* Actions */}
             <div className="flex items-center flex-shrink-0 space-x-4 ml-auto">
               {/* Search Bar */}
               <div className="relative hidden sm:block">
@@ -136,7 +132,6 @@ export default function Header() {
                   </div>
                 </form>
               </div>
-
               {/* Cart Button */}
               <Button
                 variant="ghost"
@@ -151,12 +146,10 @@ export default function Header() {
                   </span>
                 )}
               </Button>
-
               {/* User Profile */}
               <Button variant="ghost" size="sm">
                 <User className="h-5 w-5" />
               </Button>
-
               {/* Mobile Menu Button */}
               <Button
                 variant="ghost"
@@ -194,8 +187,7 @@ export default function Header() {
                   </Button>
                 </div>
               </form>
-
-              {/* Mobile Nav */}
+              {/* Mobile Navigation Links */}
               <nav className="space-y-2">
                 <Link
                   href="/"
@@ -248,7 +240,6 @@ export default function Header() {
           </div>
         )}
       </header>
-
       {/* Shopping Cart Overlay */}
       <ShoppingCartComponent isOpen={showCart} onClose={() => setShowCart(false)} />
     </>
