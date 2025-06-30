@@ -28,16 +28,17 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-40 bg-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          {/* min-w-0 allows flex children to shrink if needed */}
+          <div className="flex items-center justify-between h-16 min-w-0">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-4 sm:space-x-5 flex-shrink-0">
+            <Link href="/" className="flex items-center space-x-4 sm:space-x-5 flex-shrink min-w-0">
               <img 
                 className="h-8 w-8 sm:h-10 sm:w-10"
                 src={logoImage} 
                 alt="Mic Drop Records Logo"
               />
               <div 
-                className="font-bold text-sm sm:text-lg text-white whitespace-nowrap" 
+                className="font-bold text-sm sm:text-lg text-white whitespace-nowrap truncate" 
                 style={{ fontFamily: '"Special Gothic Expanded One", sans-serif' }}
               >
                 Mic Drop Records
@@ -92,7 +93,7 @@ export default function Header() {
             </nav>
 
             {/* Search and User Actions */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 flex-shrink-0">
               {/* Search Bar */}
               <div className="relative hidden sm:block">
                 <form onSubmit={handleSearch} className="flex">
