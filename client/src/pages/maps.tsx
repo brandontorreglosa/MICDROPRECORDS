@@ -1,2 +1,16 @@
+import React from "react";
 
-<div style="width: 100%;height:100%;border:none;"><iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=100%25&amp;hl=en&amp;q=mic%20drop%20studio+()&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.mapsdirections.info/calcular-la-población-en-un-mapa">mapa de poblacion google</a></iframe></div>
+export default function MapsPage() {
+  return (
+    <div style={{ width: "100vw", height: "100vh", margin: 0, padding: 0, overflow: "hidden" }}>
+      <iframe
+        src="https://maps.google.com/maps?width=100%25&amp;height=100%25&amp;hl=en&amp;q=mic%20drop%20studio+()&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+        style={{ width: "100vw", height: "100vh", border: "none", margin: 0, padding: 0, display: "block" }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Mic Drop Studio Map"
+      />
+    </div>
+  );
+}
