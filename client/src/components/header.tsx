@@ -35,7 +35,7 @@ export default function Header() {
   return (
     <>
       <style>{hideScrollbarCss}</style>
-      <header className="sticky top-0 z-40 bg-black border-b border-gray-800 pl-3 sm:pl-0">
+      <header className="sticky top-0 z-40 bg-white border-b border-gray-800 pl-3 sm:pl-0">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           <div className="flex items-center h-16 min-w-0">
             {/* Logo + Brand */}
@@ -49,7 +49,7 @@ export default function Header() {
                 alt="Mic Drop Records Logo"
               />
               <span
-                className="font-bold text-sm sm:text-lg text-white whitespace-nowrap overflow-x-auto scrollbar-hide min-w-0 flex-1 ml-6"
+                className="font-bold text-sm sm:text-lg text-black whitespace-nowrap overflow-x-auto scrollbar-hide min-w-0 flex-1 ml-6"
                 style={{
                   fontFamily: '"Special Gothic Expanded One", sans-serif',
                   WebkitOverflowScrolling: 'touch'
@@ -67,7 +67,7 @@ export default function Header() {
                 <Link
                   href="/"
                   className={`ml-6 transition-colors duration-200 font-medium whitespace-nowrap ${
-                    location === "/" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
+                    location === "/" ? "text-black border-b border-black" : "text-black-400 hover:text-gray"
                   }`}
                 >
                   Home
@@ -75,7 +75,7 @@ export default function Header() {
                 <Link
                   href="/releases"
                   className={`transition-colors duration-200 font-medium whitespace-nowrap ${
-                    location === "/releases" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
+                    location === "/releases" ? "text-black border-b border-black" : "text-black-400 hover:text-gray"
                   }`}
                 >
                   New Music
@@ -83,7 +83,7 @@ export default function Header() {
                 <Link
                   href="/artists"
                   className={`transition-colors duration-200 font-medium whitespace-nowrap ${
-                    location.startsWith("/artist") ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
+                    location.startsWith("/artist") ? "text-black border-b border-black" : "text-black-400 hover:text-gray"
                   }`}
                 >
                   Artists
@@ -91,7 +91,7 @@ export default function Header() {
                 <Link
                   href="/studio"
                   className={`transition-colors duration-200 font-medium whitespace-nowrap ${
-                    location === "/studio" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
+                    location === "/studio" ? "text-black border-b border-black" : "text-black-400 hover:text-gray"
                   }`}
                 >
                   Studio
@@ -99,12 +99,12 @@ export default function Header() {
                 <Link
                   href="/news"
                   className={`transition-colors duration-200 font-medium whitespace-nowrap ${
-                    location === "/news" ? "text-white border-b border-white" : "text-gray-400 hover:text-white"
+                    location === "/news" ? "text-black border-b border-black" : "text-black-400 hover:text-gray"
                   }`}
                 >
                   News
                 </Link>
-                <span className="text-gray-400 hover:text-white transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap">
+                <span className="text-black-400 hover:text-gray transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap">
                   Mic Drop +
                 </span>
               </div>
@@ -121,7 +121,7 @@ export default function Header() {
                       placeholder="Search artists, albums..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-64 pr-10 bg-gray-900 border-gray-600 focus:border-white text-white"
+                      className="w-64 pr-10 bg-black-900 border-black-600 focus:border-black text-gray"
                       maxLength={50}
                     />
                     <Button
