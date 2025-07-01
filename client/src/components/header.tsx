@@ -35,7 +35,7 @@ export default function Header() {
   return (
     <>
       <style>{hideScrollbarCss}</style>
-      <header className="sticky top-0 z-40 bg-black border-b border-gray-800 pl-6 sm:pl-0">
+      <header className="sticky top-0 z-40 bg-black border-b border-gray-800 pl-3 sm:pl-0">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           <div className="flex items-center h-16 min-w-0">
             {/* Logo + Brand */}
